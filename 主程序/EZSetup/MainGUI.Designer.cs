@@ -41,7 +41,7 @@ namespace EZSetup
             this.MinimizeBox = false;
             this.Name = "MainGUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "EasySetup安装包制作";
+            this.Text = "EZSetup安装包制作";
             this.ResumeLayout(false);
 
         }
