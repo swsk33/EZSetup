@@ -5,15 +5,20 @@ namespace EZSetup
 {
     static class Program
     {
+        public static MainGUI mainGUI;
+
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
         [STAThread]
+        [Obsolete]
         static void Main()
         {
+            AppDomain.CurrentDomain.AppendPrivatePath("lib");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainGUI());
+            mainGUI = new MainGUI();
+            Application.Run(mainGUI);
         }
     }
 }
