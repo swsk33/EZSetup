@@ -1,12 +1,13 @@
 ﻿using InstallPack.Model;
 using Newtonsoft.Json;
+using Swsk33.ReadAndWriteSharp;
+using Swsk33.ReadAndWriteSharp.Model;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-using Swsk33.ReadAndWriteSharp;
-using Swsk33.ReadAndWriteSharp.Model;
 
 namespace InstallPack.ConfigModule
 {
@@ -133,6 +134,11 @@ namespace InstallPack.ConfigModule
                 MessageBox.Show("请填写待打包文件夹！", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (!Directory.Exists(dirValue.Text))
+            {
+                MessageBox.Show("打包文件夹不存在！", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (generateShortcut.Checked && shortcutList.Items.Count == 0)
             {
                 MessageBox.Show("请指定要创建快捷方式的文件或者取消勾选创建快捷方式！", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -164,12 +170,13 @@ namespace InstallPack.ConfigModule
             DirInfo dirInfo = new DirInfo();
             BinaryUtils.GetDirectoryInfo(dirValue.Text, dirInfo);
             cfg.PackedDirSize = dirInfo.GetSize();
-            if (!Directory.Exists("Resources"))
+            string currentDir = AppDomain.CurrentDomain.BaseDirectory;
+            if (!Directory.Exists(currentDir + "\\Resources"))
             {
-                Directory.CreateDirectory("Resources");
+                Directory.CreateDirectory(currentDir + "\\Resources");
             }
             string cfgJson = JsonConvert.SerializeObject(cfg);
-            File.WriteAllText(@"Resources\cfg.ezcfg", cfgJson);
+            File.WriteAllText(currentDir + @"\Resources\cfg.ezcfg", cfgJson);
             Program.code = "1";
             Close();
         }

@@ -32,16 +32,17 @@ namespace EZSetup
             this.title = new System.Windows.Forms.Label();
             this.mainTabPanel = new System.Windows.Forms.TabControl();
             this.main = new System.Windows.Forms.TabPage();
-            this.config = new System.Windows.Forms.TabPage();
-            this.tip = new System.Windows.Forms.Label();
+            this.downSDK = new System.Windows.Forms.LinkLabel();
             this.next = new System.Windows.Forms.Button();
             this.sdkNotFoundTip = new System.Windows.Forms.Label();
-            this.downSDK = new System.Windows.Forms.LinkLabel();
-            this.cscVersionTip = new System.Windows.Forms.Label();
-            this.cscVersionBox = new System.Windows.Forms.ComboBox();
-            this.templateTip = new System.Windows.Forms.Label();
-            this.templateList = new System.Windows.Forms.ListBox();
+            this.tip = new System.Windows.Forms.Label();
+            this.config = new System.Windows.Forms.TabPage();
             this.ok = new System.Windows.Forms.Button();
+            this.templateList = new System.Windows.Forms.ListBox();
+            this.templateTip = new System.Windows.Forms.Label();
+            this.cscVersionBox = new System.Windows.Forms.ComboBox();
+            this.cscVersionTip = new System.Windows.Forms.Label();
+            this.prepareTip = new System.Windows.Forms.Label();
             this.mainTabPanel.SuspendLayout();
             this.main.SuspendLayout();
             this.config.SuspendLayout();
@@ -85,50 +86,6 @@ namespace EZSetup
             this.main.TabIndex = 0;
             this.main.UseVisualStyleBackColor = true;
             // 
-            // config
-            // 
-            this.config.Controls.Add(this.ok);
-            this.config.Controls.Add(this.templateList);
-            this.config.Controls.Add(this.templateTip);
-            this.config.Controls.Add(this.cscVersionBox);
-            this.config.Controls.Add(this.cscVersionTip);
-            this.config.Location = new System.Drawing.Point(4, 14);
-            this.config.Name = "config";
-            this.config.Padding = new System.Windows.Forms.Padding(3);
-            this.config.Size = new System.Drawing.Size(512, 201);
-            this.config.TabIndex = 1;
-            this.config.UseVisualStyleBackColor = true;
-            // 
-            // tip
-            // 
-            this.tip.AutoSize = true;
-            this.tip.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tip.Location = new System.Drawing.Point(28, 68);
-            this.tip.Name = "tip";
-            this.tip.Size = new System.Drawing.Size(142, 19);
-            this.tip.TabIndex = 1;
-            this.tip.Text = "点击下一步继续";
-            // 
-            // next
-            // 
-            this.next.Location = new System.Drawing.Point(419, 158);
-            this.next.Name = "next";
-            this.next.Size = new System.Drawing.Size(78, 30);
-            this.next.TabIndex = 2;
-            this.next.Text = "下一步";
-            this.next.UseVisualStyleBackColor = true;
-            // 
-            // sdkNotFoundTip
-            // 
-            this.sdkNotFoundTip.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.sdkNotFoundTip.ForeColor = System.Drawing.Color.Red;
-            this.sdkNotFoundTip.Location = new System.Drawing.Point(29, 105);
-            this.sdkNotFoundTip.Name = "sdkNotFoundTip";
-            this.sdkNotFoundTip.Size = new System.Drawing.Size(443, 34);
-            this.sdkNotFoundTip.TabIndex = 1;
-            this.sdkNotFoundTip.Text = "找不到可用的.NET Framework构建环境，请安装.NET Framework SDK，然后关闭并重新打开此软件\r\n";
-            this.sdkNotFoundTip.Visible = false;
-            // 
             // downSDK
             // 
             this.downSDK.AutoSize = true;
@@ -141,32 +98,61 @@ namespace EZSetup
             this.downSDK.Visible = false;
             this.downSDK.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.downSDK_LinkClicked);
             // 
-            // cscVersionTip
+            // next
             // 
-            this.cscVersionTip.AutoSize = true;
-            this.cscVersionTip.Location = new System.Drawing.Point(30, 20);
-            this.cscVersionTip.Name = "cscVersionTip";
-            this.cscVersionTip.Size = new System.Drawing.Size(157, 15);
-            this.cscVersionTip.TabIndex = 0;
-            this.cscVersionTip.Text = "用于构建的框架版本：";
+            this.next.Location = new System.Drawing.Point(419, 158);
+            this.next.Name = "next";
+            this.next.Size = new System.Drawing.Size(78, 30);
+            this.next.TabIndex = 2;
+            this.next.Text = "下一步";
+            this.next.UseVisualStyleBackColor = true;
+            this.next.Click += new System.EventHandler(this.next_Click);
             // 
-            // cscVersionBox
+            // sdkNotFoundTip
             // 
-            this.cscVersionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cscVersionBox.FormattingEnabled = true;
-            this.cscVersionBox.Location = new System.Drawing.Point(193, 15);
-            this.cscVersionBox.Name = "cscVersionBox";
-            this.cscVersionBox.Size = new System.Drawing.Size(148, 23);
-            this.cscVersionBox.TabIndex = 1;
+            this.sdkNotFoundTip.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.sdkNotFoundTip.ForeColor = System.Drawing.Color.Red;
+            this.sdkNotFoundTip.Location = new System.Drawing.Point(29, 105);
+            this.sdkNotFoundTip.Name = "sdkNotFoundTip";
+            this.sdkNotFoundTip.Size = new System.Drawing.Size(443, 34);
+            this.sdkNotFoundTip.TabIndex = 1;
+            this.sdkNotFoundTip.Text = "找不到可用的.NET Framework构建环境，请安装.NET Framework SDK，然后关闭并重新打开此软件\r\n";
+            this.sdkNotFoundTip.Visible = false;
             // 
-            // templateTip
+            // tip
             // 
-            this.templateTip.AutoSize = true;
-            this.templateTip.Location = new System.Drawing.Point(30, 52);
-            this.templateTip.Name = "templateTip";
-            this.templateTip.Size = new System.Drawing.Size(97, 15);
-            this.templateTip.TabIndex = 2;
-            this.templateTip.Text = "安装包模板：";
+            this.tip.AutoSize = true;
+            this.tip.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tip.Location = new System.Drawing.Point(28, 68);
+            this.tip.Name = "tip";
+            this.tip.Size = new System.Drawing.Size(142, 19);
+            this.tip.TabIndex = 1;
+            this.tip.Text = "点击下一步继续";
+            // 
+            // config
+            // 
+            this.config.Controls.Add(this.prepareTip);
+            this.config.Controls.Add(this.ok);
+            this.config.Controls.Add(this.templateList);
+            this.config.Controls.Add(this.templateTip);
+            this.config.Controls.Add(this.cscVersionBox);
+            this.config.Controls.Add(this.cscVersionTip);
+            this.config.Location = new System.Drawing.Point(4, 14);
+            this.config.Name = "config";
+            this.config.Padding = new System.Windows.Forms.Padding(3);
+            this.config.Size = new System.Drawing.Size(512, 201);
+            this.config.TabIndex = 1;
+            this.config.UseVisualStyleBackColor = true;
+            // 
+            // ok
+            // 
+            this.ok.Location = new System.Drawing.Point(413, 164);
+            this.ok.Name = "ok";
+            this.ok.Size = new System.Drawing.Size(75, 26);
+            this.ok.TabIndex = 4;
+            this.ok.Text = "确定";
+            this.ok.UseVisualStyleBackColor = true;
+            this.ok.Click += new System.EventHandler(this.ok_Click);
             // 
             // templateList
             // 
@@ -177,14 +163,43 @@ namespace EZSetup
             this.templateList.Size = new System.Drawing.Size(455, 79);
             this.templateList.TabIndex = 3;
             // 
-            // ok
+            // templateTip
             // 
-            this.ok.Location = new System.Drawing.Point(413, 164);
-            this.ok.Name = "ok";
-            this.ok.Size = new System.Drawing.Size(75, 26);
-            this.ok.TabIndex = 4;
-            this.ok.Text = "确定";
-            this.ok.UseVisualStyleBackColor = true;
+            this.templateTip.AutoSize = true;
+            this.templateTip.Location = new System.Drawing.Point(30, 52);
+            this.templateTip.Name = "templateTip";
+            this.templateTip.Size = new System.Drawing.Size(97, 15);
+            this.templateTip.TabIndex = 2;
+            this.templateTip.Text = "安装包模板：";
+            // 
+            // cscVersionBox
+            // 
+            this.cscVersionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cscVersionBox.FormattingEnabled = true;
+            this.cscVersionBox.Location = new System.Drawing.Point(193, 15);
+            this.cscVersionBox.Name = "cscVersionBox";
+            this.cscVersionBox.Size = new System.Drawing.Size(148, 23);
+            this.cscVersionBox.TabIndex = 1;
+            // 
+            // cscVersionTip
+            // 
+            this.cscVersionTip.AutoSize = true;
+            this.cscVersionTip.Location = new System.Drawing.Point(30, 20);
+            this.cscVersionTip.Name = "cscVersionTip";
+            this.cscVersionTip.Size = new System.Drawing.Size(157, 15);
+            this.cscVersionTip.TabIndex = 0;
+            this.cscVersionTip.Text = "用于构建的框架版本：";
+            // 
+            // prepareTip
+            // 
+            this.prepareTip.AutoSize = true;
+            this.prepareTip.ForeColor = System.Drawing.Color.Red;
+            this.prepareTip.Location = new System.Drawing.Point(33, 164);
+            this.prepareTip.Name = "prepareTip";
+            this.prepareTip.Size = new System.Drawing.Size(76, 15);
+            this.prepareTip.TabIndex = 5;
+            this.prepareTip.Text = "准备中...";
+            this.prepareTip.Visible = false;
             // 
             // MainGUI
             // 
@@ -223,6 +238,7 @@ namespace EZSetup
         private System.Windows.Forms.Button ok;
         private System.Windows.Forms.ListBox templateList;
         private System.Windows.Forms.Label templateTip;
+        private System.Windows.Forms.Label prepareTip;
     }
 }
 
