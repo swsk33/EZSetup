@@ -33,34 +33,70 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="UninstallModule\MainGUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="UninstallModule\MainGUI.Designer.cs">
+      <DependentUpon>MainGUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UninstallModule\Program.cs" />
+    <EmbeddedResource Include="ConfigModule\MainGUI.resx">
+      <DependentUpon>MainGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigModule\ShortcutInfo.resx">
+      <DependentUpon>ShortcutInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="installSrc\MainGUI.resx">
+      <DependentUpon>MainGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="installSrc\PreLoad.resx">
+      <DependentUpon>PreLoad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Compile Include="ConfigModule\MainGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigModule\MainGUI.Designer.cs">
+      <DependentUpon>MainGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigModule\Program.cs" />
+    <Compile Include="ConfigModule\ShortcutInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigModule\ShortcutInfo.Designer.cs">
+      <DependentUpon>ShortcutInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="installSrc\MainGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="installSrc\MainGUI.Designer.cs">
+      <DependentUpon>MainGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="installSrc\PreLoad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="installSrc\PreLoad.Designer.cs">
+      <DependentUpon>PreLoad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="installSrc\Program.cs" />
+    <Compile Include="installSrc\Uti\ConfigUtils.cs" />
+    <Compile Include="installSrc\Uti\IOUtils.cs" />
+    <Compile Include="Model\Configure.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UninstallModule\MainGUI.resx">
+      <DependentUpon>MainGUI.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -70,6 +106,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\cfg.ezcfg" />
+    <None Include="Resources\data.7z" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\7z.dll" />
+    <Content Include="Resources\7z.exe" />
+    <Content Include="Resources\icon.ico" />
+    <Content Include="Resources\Newtonsoft.Json.dll" />
+    <Content Include="Resources\ReadAndWriteSharp.dll" />
+    <Content Include="Resources\shortcut.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
