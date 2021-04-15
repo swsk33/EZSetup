@@ -54,13 +54,14 @@ namespace EZSetup
             }
             else
             {
-                foreach(string v in cscVersions.Keys)
+                foreach (string v in cscVersions.Keys)
                 {
                     cscVersionBox.Items.Add(v);
                 }
                 cscVersionBox.SelectedIndex = 0;
+                compressLevelValue.SelectedIndex = 2;
                 string[] templates = Directory.GetFiles("TemplatePack");
-                foreach(string t in templates)
+                foreach (string t in templates)
                 {
                     if (t.EndsWith(".7z"))
                     {
@@ -74,6 +75,16 @@ namespace EZSetup
 
         private void ok_Click(object sender, EventArgs e)
         {
+            if (outputPathValue.Text.Equals(""))
+            {
+                MessageBox.Show("请设定输出路径！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (setIcon.Checked && !File.Exists(iconPath.Text))
+            {
+                MessageBox.Show("所选图标文件不存在！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (templateList.SelectedIndex < 0)
             {
                 MessageBox.Show("请选择安装包模板！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -94,15 +105,78 @@ namespace EZSetup
                 mainTabPanel.SelectedIndex = 0;
                 Visible = true;
             }
-            else if (runConfig[0].StartsWith("1"))
+            else
             {
-                
+                string packedPath = runConfig[0].Substring(0, runConfig[0].LastIndexOf("|"));
+                string genUninstall = runConfig[0].Substring(runConfig[0].LastIndexOf("|") + 1);
+                string compressLevelArg = "-mx9";
+                switch (compressLevelValue.SelectedIndex)
+                {
+                    case 0:
+                        compressLevelArg = "-mx1";
+                        break;
+                    case 1:
+                        compressLevelArg = "-mx3";
+                        break;
+                    case 2:
+                        compressLevelArg = "-mx5";
+                        break;
+                    case 3:
+                        compressLevelArg = "-mx7";
+                        break;
+                    default:
+                        compressLevelArg = "-mx9";
+                        break;
+                }
+                File.Delete(tmpDir + "\\Resources\\data.7z");
+                string compressCommandArgs = "a -t7z " + compressLevelArg + " \"" + tmpDir + "\\Resources\\data.7z\" \"" + packedPath + "\\*\"";
+                TerminalUtils.RunCommand("7z", compressCommandArgs);
+                if (genUninstall.Equals("1"))
+                {
+                    TerminalUtils.RunCommand("cmd", "/c \"" + tmpDir + "\\build.bat\" u uninstall.exe");
+                }
             }
         }
 
         private void next_Click(object sender, EventArgs e)
         {
             mainTabPanel.SelectedIndex++;
+        }
+
+        private void setIcon_CheckedChanged(object sender, EventArgs e)
+        {
+            if (setIcon.Checked)
+            {
+                iconPath.Enabled = true;
+                selectIcon.Enabled = true;
+            }
+            else
+            {
+                iconPath.Enabled = false;
+                selectIcon.Enabled = false;
+            }
+        }
+
+        private void selectPath_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Title = "设定输出文件";
+            saveDialog.Filter = "可执行文件|*.exe";
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                outputPathValue.Text = saveDialog.FileName;
+            }
+        }
+
+        private void selectIcon_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openDialog = new OpenFileDialog();
+            openDialog.Title = "选择图标";
+            openDialog.Filter = "图标文件|*.ico";
+            if (openDialog.ShowDialog() == DialogResult.OK)
+            {
+                iconPath.Text = openDialog.FileName;
+            }
         }
     }
 }

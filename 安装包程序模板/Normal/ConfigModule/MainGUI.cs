@@ -177,7 +177,16 @@ namespace InstallPack.ConfigModule
             }
             string cfgJson = JsonConvert.SerializeObject(cfg);
             File.WriteAllText(currentDir + @"\Resources\cfg.ezcfg", cfgJson);
-            Program.code = "1";
+            string uninstallCode;
+            if (cfg.GenerateUninstall)
+            {
+                uninstallCode = "1";
+            }
+            else
+            {
+                uninstallCode = "0";
+            }
+            Program.code = cfg.PackedDir + "|" + uninstallCode;
             Close();
         }
     }

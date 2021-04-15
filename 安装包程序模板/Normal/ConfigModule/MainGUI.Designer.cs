@@ -50,11 +50,11 @@ namespace InstallPack.ConfigModule
             this.loadFromFile = new System.Windows.Forms.Button();
             this.addBootOption = new System.Windows.Forms.CheckBox();
             this.openAfterSetup = new System.Windows.Forms.CheckBox();
-            this.genUnsetup = new System.Windows.Forms.CheckBox();
             this.titleValue = new System.Windows.Forms.TextBox();
             this.done = new System.Windows.Forms.Button();
             this.runAfter = new System.Windows.Forms.Label();
             this.runafterValue = new System.Windows.Forms.TextBox();
+            this.genUnsetup = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // title
@@ -262,17 +262,6 @@ namespace InstallPack.ConfigModule
             this.openAfterSetup.Text = "显示安装完成后运行";
             this.openAfterSetup.UseVisualStyleBackColor = true;
             // 
-            // genUnsetup
-            // 
-            this.genUnsetup.AutoSize = true;
-            this.genUnsetup.Font = new System.Drawing.Font("宋体", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.genUnsetup.Location = new System.Drawing.Point(26, 470);
-            this.genUnsetup.Name = "genUnsetup";
-            this.genUnsetup.Size = new System.Drawing.Size(166, 21);
-            this.genUnsetup.TabIndex = 3;
-            this.genUnsetup.Text = "生成一个卸载程序";
-            this.genUnsetup.UseVisualStyleBackColor = true;
-            // 
             // titleValue
             // 
             this.titleValue.Location = new System.Drawing.Point(102, 25);
@@ -306,6 +295,17 @@ namespace InstallPack.ConfigModule
             this.runafterValue.Name = "runafterValue";
             this.runafterValue.Size = new System.Drawing.Size(280, 25);
             this.runafterValue.TabIndex = 3;
+            // 
+            // genUnsetup
+            // 
+            this.genUnsetup.AutoSize = true;
+            this.genUnsetup.Font = new System.Drawing.Font("宋体", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.genUnsetup.Location = new System.Drawing.Point(26, 470);
+            this.genUnsetup.Name = "genUnsetup";
+            this.genUnsetup.Size = new System.Drawing.Size(166, 21);
+            this.genUnsetup.TabIndex = 3;
+            this.genUnsetup.Text = "生成一个卸载程序";
+            this.genUnsetup.UseVisualStyleBackColor = true;
             // 
             // MainGUI
             // 
@@ -372,11 +372,11 @@ namespace InstallPack.ConfigModule
         private System.Windows.Forms.Button loadFromFile;
         private System.Windows.Forms.CheckBox addBootOption;
         private System.Windows.Forms.CheckBox openAfterSetup;
-        private System.Windows.Forms.CheckBox genUnsetup;
         private System.Windows.Forms.TextBox titleValue;
         private System.Windows.Forms.Button done;
         private System.Windows.Forms.Label runAfter;
         private System.Windows.Forms.TextBox runafterValue;
         public System.Windows.Forms.ListBox shortcutList;
+        private System.Windows.Forms.CheckBox genUnsetup;
     }
 }
