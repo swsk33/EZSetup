@@ -29,6 +29,7 @@ namespace EZSetup
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainGUI));
             this.title = new System.Windows.Forms.Label();
             this.mainTabPanel = new System.Windows.Forms.TabControl();
             this.main = new System.Windows.Forms.TabPage();
@@ -37,20 +38,20 @@ namespace EZSetup
             this.sdkNotFoundTip = new System.Windows.Forms.Label();
             this.tip = new System.Windows.Forms.Label();
             this.config = new System.Windows.Forms.TabPage();
+            this.iconPath = new System.Windows.Forms.TextBox();
+            this.selectIcon = new System.Windows.Forms.Button();
+            this.setIcon = new System.Windows.Forms.CheckBox();
+            this.selectPath = new System.Windows.Forms.Button();
+            this.outputPathValue = new System.Windows.Forms.TextBox();
+            this.outputPath = new System.Windows.Forms.Label();
+            this.compressLevelValue = new System.Windows.Forms.ComboBox();
+            this.cscVersionBox = new System.Windows.Forms.ComboBox();
             this.prepareTip = new System.Windows.Forms.Label();
             this.ok = new System.Windows.Forms.Button();
             this.templateList = new System.Windows.Forms.ListBox();
             this.templateTip = new System.Windows.Forms.Label();
-            this.compressLevelValue = new System.Windows.Forms.ComboBox();
             this.compressLevelTip = new System.Windows.Forms.Label();
-            this.cscVersionBox = new System.Windows.Forms.ComboBox();
             this.cscVersionTip = new System.Windows.Forms.Label();
-            this.outputPath = new System.Windows.Forms.Label();
-            this.outputPathValue = new System.Windows.Forms.TextBox();
-            this.selectPath = new System.Windows.Forms.Button();
-            this.setIcon = new System.Windows.Forms.CheckBox();
-            this.iconPath = new System.Windows.Forms.TextBox();
-            this.selectIcon = new System.Windows.Forms.Button();
             this.mainTabPanel.SuspendLayout();
             this.main.SuspendLayout();
             this.config.SuspendLayout();
@@ -87,10 +88,10 @@ namespace EZSetup
             this.main.Controls.Add(this.sdkNotFoundTip);
             this.main.Controls.Add(this.tip);
             this.main.Controls.Add(this.title);
-            this.main.Location = new System.Drawing.Point(4, 14);
+            this.main.Location = new System.Drawing.Point(4, 5);
             this.main.Name = "main";
             this.main.Padding = new System.Windows.Forms.Padding(3);
-            this.main.Size = new System.Drawing.Size(604, 392);
+            this.main.Size = new System.Drawing.Size(604, 401);
             this.main.TabIndex = 0;
             this.main.UseVisualStyleBackColor = true;
             // 
@@ -160,6 +161,88 @@ namespace EZSetup
             this.config.TabIndex = 1;
             this.config.UseVisualStyleBackColor = true;
             // 
+            // iconPath
+            // 
+            this.iconPath.Enabled = false;
+            this.iconPath.Location = new System.Drawing.Point(159, 136);
+            this.iconPath.Name = "iconPath";
+            this.iconPath.ReadOnly = true;
+            this.iconPath.Size = new System.Drawing.Size(102, 25);
+            this.iconPath.TabIndex = 7;
+            // 
+            // selectIcon
+            // 
+            this.selectIcon.Enabled = false;
+            this.selectIcon.Location = new System.Drawing.Point(267, 135);
+            this.selectIcon.Name = "selectIcon";
+            this.selectIcon.Size = new System.Drawing.Size(82, 27);
+            this.selectIcon.TabIndex = 8;
+            this.selectIcon.Text = "浏览";
+            this.selectIcon.UseVisualStyleBackColor = true;
+            this.selectIcon.Click += new System.EventHandler(this.selectIcon_Click);
+            // 
+            // setIcon
+            // 
+            this.setIcon.AutoSize = true;
+            this.setIcon.Location = new System.Drawing.Point(40, 140);
+            this.setIcon.Name = "setIcon";
+            this.setIcon.Size = new System.Drawing.Size(119, 19);
+            this.setIcon.TabIndex = 9;
+            this.setIcon.Text = "自定义图标：";
+            this.setIcon.UseVisualStyleBackColor = true;
+            this.setIcon.CheckedChanged += new System.EventHandler(this.setIcon_CheckedChanged);
+            // 
+            // selectPath
+            // 
+            this.selectPath.Location = new System.Drawing.Point(495, 96);
+            this.selectPath.Name = "selectPath";
+            this.selectPath.Size = new System.Drawing.Size(82, 29);
+            this.selectPath.TabIndex = 8;
+            this.selectPath.Text = "浏览";
+            this.selectPath.UseVisualStyleBackColor = true;
+            this.selectPath.Click += new System.EventHandler(this.selectPath_Click);
+            // 
+            // outputPathValue
+            // 
+            this.outputPathValue.Location = new System.Drawing.Point(159, 97);
+            this.outputPathValue.Name = "outputPathValue";
+            this.outputPathValue.ReadOnly = true;
+            this.outputPathValue.Size = new System.Drawing.Size(316, 25);
+            this.outputPathValue.TabIndex = 7;
+            // 
+            // outputPath
+            // 
+            this.outputPath.AutoSize = true;
+            this.outputPath.Location = new System.Drawing.Point(32, 101);
+            this.outputPath.Name = "outputPath";
+            this.outputPath.Size = new System.Drawing.Size(127, 15);
+            this.outputPath.TabIndex = 6;
+            this.outputPath.Text = "生成安装包路径：";
+            // 
+            // compressLevelValue
+            // 
+            this.compressLevelValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.compressLevelValue.FormattingEnabled = true;
+            this.compressLevelValue.Items.AddRange(new object[] {
+            "仅储存",
+            "低",
+            "普通",
+            "高",
+            "极限"});
+            this.compressLevelValue.Location = new System.Drawing.Point(159, 57);
+            this.compressLevelValue.Name = "compressLevelValue";
+            this.compressLevelValue.Size = new System.Drawing.Size(93, 23);
+            this.compressLevelValue.TabIndex = 1;
+            // 
+            // cscVersionBox
+            // 
+            this.cscVersionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cscVersionBox.FormattingEnabled = true;
+            this.cscVersionBox.Location = new System.Drawing.Point(159, 17);
+            this.cscVersionBox.Name = "cscVersionBox";
+            this.cscVersionBox.Size = new System.Drawing.Size(148, 23);
+            this.cscVersionBox.TabIndex = 1;
+            // 
             // prepareTip
             // 
             this.prepareTip.AutoSize = true;
@@ -199,21 +282,6 @@ namespace EZSetup
             this.templateTip.TabIndex = 2;
             this.templateTip.Text = "安装包模板：";
             // 
-            // compressLevelValue
-            // 
-            this.compressLevelValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.compressLevelValue.FormattingEnabled = true;
-            this.compressLevelValue.Items.AddRange(new object[] {
-            "仅储存",
-            "低",
-            "普通",
-            "高",
-            "极限"});
-            this.compressLevelValue.Location = new System.Drawing.Point(159, 57);
-            this.compressLevelValue.Name = "compressLevelValue";
-            this.compressLevelValue.Size = new System.Drawing.Size(93, 23);
-            this.compressLevelValue.TabIndex = 1;
-            // 
             // compressLevelTip
             // 
             this.compressLevelTip.AutoSize = true;
@@ -222,15 +290,6 @@ namespace EZSetup
             this.compressLevelTip.Size = new System.Drawing.Size(82, 15);
             this.compressLevelTip.TabIndex = 0;
             this.compressLevelTip.Text = "压缩等级：";
-            // 
-            // cscVersionBox
-            // 
-            this.cscVersionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cscVersionBox.FormattingEnabled = true;
-            this.cscVersionBox.Location = new System.Drawing.Point(159, 17);
-            this.cscVersionBox.Name = "cscVersionBox";
-            this.cscVersionBox.Size = new System.Drawing.Size(148, 23);
-            this.cscVersionBox.TabIndex = 1;
             // 
             // cscVersionTip
             // 
@@ -241,64 +300,6 @@ namespace EZSetup
             this.cscVersionTip.TabIndex = 0;
             this.cscVersionTip.Text = "构建框架版本：";
             // 
-            // outputPath
-            // 
-            this.outputPath.AutoSize = true;
-            this.outputPath.Location = new System.Drawing.Point(32, 101);
-            this.outputPath.Name = "outputPath";
-            this.outputPath.Size = new System.Drawing.Size(127, 15);
-            this.outputPath.TabIndex = 6;
-            this.outputPath.Text = "生成安装包路径：";
-            // 
-            // outputPathValue
-            // 
-            this.outputPathValue.Location = new System.Drawing.Point(159, 97);
-            this.outputPathValue.Name = "outputPathValue";
-            this.outputPathValue.ReadOnly = true;
-            this.outputPathValue.Size = new System.Drawing.Size(316, 25);
-            this.outputPathValue.TabIndex = 7;
-            // 
-            // selectPath
-            // 
-            this.selectPath.Location = new System.Drawing.Point(495, 96);
-            this.selectPath.Name = "selectPath";
-            this.selectPath.Size = new System.Drawing.Size(82, 29);
-            this.selectPath.TabIndex = 8;
-            this.selectPath.Text = "浏览";
-            this.selectPath.UseVisualStyleBackColor = true;
-            this.selectPath.Click += new System.EventHandler(this.selectPath_Click);
-            // 
-            // setIcon
-            // 
-            this.setIcon.AutoSize = true;
-            this.setIcon.Location = new System.Drawing.Point(40, 140);
-            this.setIcon.Name = "setIcon";
-            this.setIcon.Size = new System.Drawing.Size(119, 19);
-            this.setIcon.TabIndex = 9;
-            this.setIcon.Text = "自定义图标：";
-            this.setIcon.UseVisualStyleBackColor = true;
-            this.setIcon.CheckedChanged += new System.EventHandler(this.setIcon_CheckedChanged);
-            // 
-            // iconPath
-            // 
-            this.iconPath.Enabled = false;
-            this.iconPath.Location = new System.Drawing.Point(159, 136);
-            this.iconPath.Name = "iconPath";
-            this.iconPath.ReadOnly = true;
-            this.iconPath.Size = new System.Drawing.Size(102, 25);
-            this.iconPath.TabIndex = 7;
-            // 
-            // selectIcon
-            // 
-            this.selectIcon.Enabled = false;
-            this.selectIcon.Location = new System.Drawing.Point(267, 135);
-            this.selectIcon.Name = "selectIcon";
-            this.selectIcon.Size = new System.Drawing.Size(82, 27);
-            this.selectIcon.TabIndex = 8;
-            this.selectIcon.Text = "浏览";
-            this.selectIcon.UseVisualStyleBackColor = true;
-            this.selectIcon.Click += new System.EventHandler(this.selectIcon_Click);
-            // 
             // MainGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -306,6 +307,7 @@ namespace EZSetup
             this.ClientSize = new System.Drawing.Size(612, 409);
             this.Controls.Add(this.mainTabPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainGUI";
