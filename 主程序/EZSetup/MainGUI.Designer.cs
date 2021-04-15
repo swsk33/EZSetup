@@ -72,7 +72,7 @@ namespace EZSetup
             this.mainTabPanel.Controls.Add(this.main);
             this.mainTabPanel.Controls.Add(this.config);
             this.mainTabPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.mainTabPanel.ItemSize = new System.Drawing.Size(10, 10);
+            this.mainTabPanel.ItemSize = new System.Drawing.Size(0, 1);
             this.mainTabPanel.Location = new System.Drawing.Point(0, 0);
             this.mainTabPanel.Name = "mainTabPanel";
             this.mainTabPanel.SelectedIndex = 0;
@@ -153,10 +153,10 @@ namespace EZSetup
             this.config.Controls.Add(this.templateTip);
             this.config.Controls.Add(this.compressLevelTip);
             this.config.Controls.Add(this.cscVersionTip);
-            this.config.Location = new System.Drawing.Point(4, 14);
+            this.config.Location = new System.Drawing.Point(4, 5);
             this.config.Name = "config";
             this.config.Padding = new System.Windows.Forms.Padding(3);
-            this.config.Size = new System.Drawing.Size(604, 392);
+            this.config.Size = new System.Drawing.Size(604, 401);
             this.config.TabIndex = 1;
             this.config.UseVisualStyleBackColor = true;
             // 
@@ -164,7 +164,7 @@ namespace EZSetup
             // 
             this.prepareTip.AutoSize = true;
             this.prepareTip.ForeColor = System.Drawing.Color.Red;
-            this.prepareTip.Location = new System.Drawing.Point(32, 323);
+            this.prepareTip.Location = new System.Drawing.Point(21, 343);
             this.prepareTip.Name = "prepareTip";
             this.prepareTip.Size = new System.Drawing.Size(76, 15);
             this.prepareTip.TabIndex = 5;
@@ -173,7 +173,7 @@ namespace EZSetup
             // 
             // ok
             // 
-            this.ok.Location = new System.Drawing.Point(495, 332);
+            this.ok.Location = new System.Drawing.Point(495, 343);
             this.ok.Name = "ok";
             this.ok.Size = new System.Drawing.Size(82, 37);
             this.ok.TabIndex = 4;
@@ -187,7 +187,7 @@ namespace EZSetup
             this.templateList.ItemHeight = 15;
             this.templateList.Location = new System.Drawing.Point(24, 207);
             this.templateList.Name = "templateList";
-            this.templateList.Size = new System.Drawing.Size(553, 94);
+            this.templateList.Size = new System.Drawing.Size(553, 109);
             this.templateList.TabIndex = 3;
             // 
             // templateTip
@@ -260,7 +260,7 @@ namespace EZSetup
             // 
             // selectPath
             // 
-            this.selectPath.Location = new System.Drawing.Point(495, 95);
+            this.selectPath.Location = new System.Drawing.Point(495, 96);
             this.selectPath.Name = "selectPath";
             this.selectPath.Size = new System.Drawing.Size(82, 29);
             this.selectPath.TabIndex = 8;
@@ -324,7 +324,6 @@ namespace EZSetup
         #endregion
 
         private System.Windows.Forms.Label title;
-        private System.Windows.Forms.TabControl mainTabPanel;
         private System.Windows.Forms.TabPage main;
         private System.Windows.Forms.TabPage config;
         private System.Windows.Forms.Button next;
@@ -345,6 +344,7 @@ namespace EZSetup
         private System.Windows.Forms.TextBox iconPath;
         private System.Windows.Forms.CheckBox setIcon;
         private System.Windows.Forms.Button selectIcon;
+        public System.Windows.Forms.TabControl mainTabPanel;
     }
 }
 

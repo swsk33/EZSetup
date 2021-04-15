@@ -1,6 +1,7 @@
 ﻿using Swsk33.ReadAndWriteSharp;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -107,9 +108,18 @@ namespace EZSetup
             }
             else
             {
+                Visible = false;
+                ProcessForm form = new ProcessForm();
+                form.Show();
+                Application.DoEvents();
+                form.dir = outputPathValue.Text.Substring(0, outputPathValue.Text.LastIndexOf("\\"));
                 string packedPath = runConfig[0].Substring(0, runConfig[0].LastIndexOf("|"));
                 string genUninstall = runConfig[0].Substring(runConfig[0].LastIndexOf("|") + 1);
-                string compressLevelArg = "-mx9";
+                if (setIcon.Checked)
+                {
+                    File.Copy(iconPath.Text, tmpDir + "\\Resources\\icon.ico", true);
+                }
+                string compressLevelArg;
                 switch (compressLevelValue.SelectedIndex)
                 {
                     case 0:
@@ -129,11 +139,32 @@ namespace EZSetup
                         break;
                 }
                 File.Delete(tmpDir + "\\Resources\\data.7z");
-                string compressCommandArgs = "a -t7z " + compressLevelArg + " \"" + tmpDir + "\\Resources\\data.7z\" \"" + packedPath + "\\*\"";
-                TerminalUtils.RunCommand("7z", compressCommandArgs);
-                if (genUninstall.Equals("1"))
+                string compressCommandArgs = "a -y -t7z " + compressLevelArg + " \"" + tmpDir + "\\Resources\\data.7z\" \"" + packedPath + "\\*\"";
+                TerminalUtils.RunCommand("Refer\\7z", compressCommandArgs);
+                form.progressBar.Value = 75;
+                Application.DoEvents();
+                if (genUninstall.StartsWith("1") && !File.Exists(packedPath + "\\uninstall.exe"))
                 {
-                    TerminalUtils.RunCommand("cmd", "/c \"" + tmpDir + "\\build.bat\" u uninstall.exe");
+                    TerminalUtils.RunCommand(tmpDir + "\\build.bat", "u uninstall.exe");
+                    TerminalUtils.RunCommand("Refer\\7z", "a -y " + "\"" + tmpDir + "\\Resources\\data.7z\" \"" + tmpDir + "\\uninstall.exe\"");
+                }
+                form.progressBar.Value = 90;
+                Application.DoEvents();
+                TerminalUtils.RunCommand(tmpDir + "\\build.bat", "i \"" + outputPathValue.Text + "\"");
+                form.progressBar.Value = 100;
+                Application.DoEvents();
+                if (File.Exists(outputPathValue.Text))
+                {
+                    form.processingTip.Text = "构建完成！";
+                    form.processingTip.ForeColor = Color.Green;
+                    form.close.Enabled = true;
+                    form.openDir.Enabled = true;
+                }
+                else
+                {
+                    form.processingTip.Text = "构建失败！";
+                    form.processingTip.ForeColor = Color.Red;
+                    form.close.Enabled = true;
                 }
             }
         }

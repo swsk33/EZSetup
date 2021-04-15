@@ -46,12 +46,14 @@ namespace EZSetup
             // 
             // close
             // 
+            this.close.Enabled = false;
             this.close.Location = new System.Drawing.Point(116, 129);
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(85, 31);
             this.close.TabIndex = 1;
             this.close.Text = "关闭";
             this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
             // 
             // progressBar
             // 
@@ -62,12 +64,14 @@ namespace EZSetup
             // 
             // openDir
             // 
+            this.openDir.Enabled = false;
             this.openDir.Location = new System.Drawing.Point(268, 129);
             this.openDir.Name = "openDir";
-            this.openDir.Size = new System.Drawing.Size(123, 31);
+            this.openDir.Size = new System.Drawing.Size(129, 31);
             this.openDir.TabIndex = 1;
             this.openDir.Text = "打开输出文件夹";
             this.openDir.UseVisualStyleBackColor = true;
+            this.openDir.Click += new System.EventHandler(this.openDir_Click);
             // 
             // ProcessForm
             // 
@@ -90,10 +94,9 @@ namespace EZSetup
         }
 
         #endregion
-
-        private System.Windows.Forms.Label processingTip;
-        private System.Windows.Forms.Button close;
-        private System.Windows.Forms.ProgressBar progressBar;
-        private System.Windows.Forms.Button openDir;
+        public System.Windows.Forms.ProgressBar progressBar;
+        public System.Windows.Forms.Label processingTip;
+        public System.Windows.Forms.Button close;
+        public System.Windows.Forms.Button openDir;
     }
 }

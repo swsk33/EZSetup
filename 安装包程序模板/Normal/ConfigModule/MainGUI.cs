@@ -166,7 +166,7 @@ namespace InstallPack.ConfigModule
             cfg.AddBootOption = addBootOption.Checked;
             cfg.RunAfterSetup = runafterValue.Text;
             cfg.OpenAfterSetup = openAfterSetup.Checked;
-            cfg.GenerateUninstall = generateShortcut.Checked;
+            cfg.GenerateUninstall = genUnsetup.Checked;
             DirInfo dirInfo = new DirInfo();
             BinaryUtils.GetDirectoryInfo(dirValue.Text, dirInfo);
             cfg.PackedDirSize = dirInfo.GetSize();

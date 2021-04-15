@@ -90,7 +90,7 @@ namespace InstallPack.UninstallModule
             this.MinimizeBox = false;
             this.Name = "MainGUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MainGUI";
+            this.Text = "卸载";
             this.Load += new System.EventHandler(this.MainGUI_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
