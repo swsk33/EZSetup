@@ -167,6 +167,7 @@ namespace EZSetup
                     form.close.Enabled = true;
                 }
             }
+            Directory.Delete(tmpDir, true);
         }
 
         private void next_Click(object sender, EventArgs e)
