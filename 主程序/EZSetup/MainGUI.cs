@@ -209,5 +209,15 @@ namespace EZSetup
                 iconPath.Text = openDialog.FileName;
             }
         }
+
+        private void refer7z_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            TerminalUtils.RunCommand("cmd", "/c start https://www.7-zip.org/");
+        }
+
+        private void referNewSoftJson_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            TerminalUtils.RunCommand("cmd", "/c start https://www.newtonsoft.com/json");
+        }
     }
 }

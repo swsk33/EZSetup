@@ -52,6 +52,9 @@ namespace EZSetup
             this.templateTip = new System.Windows.Forms.Label();
             this.compressLevelTip = new System.Windows.Forms.Label();
             this.cscVersionTip = new System.Windows.Forms.Label();
+            this.referTip = new System.Windows.Forms.Label();
+            this.refer7z = new System.Windows.Forms.LinkLabel();
+            this.referNewSoftJson = new System.Windows.Forms.LinkLabel();
             this.mainTabPanel.SuspendLayout();
             this.main.SuspendLayout();
             this.config.SuspendLayout();
@@ -83,6 +86,9 @@ namespace EZSetup
             // 
             // main
             // 
+            this.main.Controls.Add(this.referNewSoftJson);
+            this.main.Controls.Add(this.refer7z);
+            this.main.Controls.Add(this.referTip);
             this.main.Controls.Add(this.downSDK);
             this.main.Controls.Add(this.next);
             this.main.Controls.Add(this.sdkNotFoundTip);
@@ -109,7 +115,7 @@ namespace EZSetup
             // 
             // next
             // 
-            this.next.Location = new System.Drawing.Point(494, 329);
+            this.next.Location = new System.Drawing.Point(494, 343);
             this.next.Name = "next";
             this.next.Size = new System.Drawing.Size(87, 39);
             this.next.TabIndex = 2;
@@ -300,6 +306,37 @@ namespace EZSetup
             this.cscVersionTip.TabIndex = 0;
             this.cscVersionTip.Text = "构建框架版本：";
             // 
+            // referTip
+            // 
+            this.referTip.AutoSize = true;
+            this.referTip.Location = new System.Drawing.Point(29, 321);
+            this.referTip.Name = "referTip";
+            this.referTip.Size = new System.Drawing.Size(52, 15);
+            this.referTip.TabIndex = 4;
+            this.referTip.Text = "引用：";
+            // 
+            // refer7z
+            // 
+            this.refer7z.AutoSize = true;
+            this.refer7z.Location = new System.Drawing.Point(29, 343);
+            this.refer7z.Name = "refer7z";
+            this.refer7z.Size = new System.Drawing.Size(47, 15);
+            this.refer7z.TabIndex = 5;
+            this.refer7z.TabStop = true;
+            this.refer7z.Text = "7-zip";
+            this.refer7z.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.refer7z_LinkClicked);
+            // 
+            // referNewSoftJson
+            // 
+            this.referNewSoftJson.AutoSize = true;
+            this.referNewSoftJson.Location = new System.Drawing.Point(29, 367);
+            this.referNewSoftJson.Name = "referNewSoftJson";
+            this.referNewSoftJson.Size = new System.Drawing.Size(127, 15);
+            this.referNewSoftJson.TabIndex = 5;
+            this.referNewSoftJson.TabStop = true;
+            this.referNewSoftJson.Text = "Newtonsoft.Json";
+            this.referNewSoftJson.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.referNewSoftJson_LinkClicked);
+            // 
             // MainGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -347,6 +384,9 @@ namespace EZSetup
         private System.Windows.Forms.CheckBox setIcon;
         private System.Windows.Forms.Button selectIcon;
         public System.Windows.Forms.TabControl mainTabPanel;
+        private System.Windows.Forms.Label referTip;
+        private System.Windows.Forms.LinkLabel referNewSoftJson;
+        private System.Windows.Forms.LinkLabel refer7z;
     }
 }
 
