@@ -121,9 +121,16 @@ namespace InstallPack
             if (!ConfigUtils.GlobalConfigure.RunAfterSetup.Equals(""))
             {
                 string totalCommand = ConfigUtils.GlobalConfigure.RunAfterSetup;
-                string command = totalCommand.Substring(0, totalCommand.IndexOf(" "));
-                string args = totalCommand.Substring(totalCommand.IndexOf(" ") + 1);
-                TerminalUtils.RunCommand(command, args);
+                if (totalCommand.Contains(" "))
+                {
+                    string command = totalCommand.Substring(0, totalCommand.IndexOf(" "));
+                    string args = totalCommand.Substring(totalCommand.IndexOf(" ") + 1);
+                    TerminalUtils.RunCommand(command, args);
+                }
+                else
+                {
+                    Process.Start(totalCommand);
+                }
             }
         }
 
