@@ -13,10 +13,10 @@ namespace InstallPack.Util
         /// </summary>
         /// <param name="exePath">exe文件原位置</param>
         /// <param name="destPath">快捷方式目标位置</param>
-        /// <param name="description">快捷方式描述</param>
-        public static void CreateShortcut(string exePath, string destPath, string description)
+        public static void CreateShortcut(string exePath, string destPath)
         {
-            TerminalUtils.RunCommand(ConfigUtils.WORK_PLACE + "\\shortcut.exe", "\"" + exePath + "\" \"" + destPath + "\" \"" + description + "\"");
+            string workingDirectory = exePath.Substring(0, exePath.LastIndexOf("\\"));
+            TerminalUtils.RunCommand(ConfigUtils.WORK_PLACE + "\\shortcut.exe", "\"" + exePath + "\" \"" + destPath + "\" \"" + workingDirectory + "\"");
         }
 
         /// <summary>

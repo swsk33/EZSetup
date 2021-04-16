@@ -83,13 +83,13 @@ namespace InstallPack
                 {
                     string originFilePath = ConfigUtils.GlobalConfigure.InstallPath + "\\" + sitem.Substring(0, sitem.IndexOf("|"));
                     string destDesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\" + sitem.Substring(sitem.IndexOf("|") + 1);
-                    IOUtils.CreateShortcut(originFilePath, destDesktopPath, "");
+                    IOUtils.CreateShortcut(originFilePath, destDesktopPath);
                     if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms) + "\\" + ConfigUtils.GlobalConfigure.Title))
                     {
                         Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms) + "\\" + ConfigUtils.GlobalConfigure.Title);
                     }
                     string destMenuPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms) + "\\" + ConfigUtils.GlobalConfigure.Title + "\\" + sitem.Substring(sitem.IndexOf("|") + 1);
-                    IOUtils.CreateShortcut(originFilePath, destMenuPath, "");
+                    IOUtils.CreateShortcut(originFilePath, destMenuPath);
                 }
             }
             if (ConfigUtils.GlobalConfigure.AddBootOption)
@@ -104,7 +104,7 @@ namespace InstallPack
                 {
                     Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms) + "\\" + ConfigUtils.GlobalConfigure.Title);
                 }
-                IOUtils.CreateShortcut(ConfigUtils.GlobalConfigure.InstallPath + "\\uninstall.exe", Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms) + "\\" + ConfigUtils.GlobalConfigure.Title + "\\卸载程序", "");
+                IOUtils.CreateShortcut(ConfigUtils.GlobalConfigure.InstallPath + "\\uninstall.exe", Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms) + "\\" + ConfigUtils.GlobalConfigure.Title + "\\卸载程序");
             }
         }
 
