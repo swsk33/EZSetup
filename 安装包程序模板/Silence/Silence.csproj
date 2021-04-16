@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B9579790-4D87-429C-B08A-8B8DDF6AE8D2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Silence</RootNamespace>
+    <RootNamespace>InstallPack</RootNamespace>
     <AssemblyName>Silence</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -31,7 +31,18 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>InstallPack.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ReadAndWriteSharp, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\ReadAndWriteSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -87,12 +98,13 @@
       <DependentUpon>PreLoad.cs</DependentUpon>
     </Compile>
     <Compile Include="installSrc\Program.cs" />
-    <Compile Include="installSrc\Uti\ConfigUtils.cs" />
-    <Compile Include="installSrc\Uti\IOUtils.cs" />
+    <Compile Include="installSrc\Util\ConfigUtils.cs" />
+    <Compile Include="installSrc\Util\IOUtils.cs" />
     <Compile Include="Model\Configure.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UninstallModule\MainGUI.resx">
       <DependentUpon>MainGUI.cs</DependentUpon>
@@ -106,16 +118,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Resources\cfg.ezcfg" />
-    <None Include="Resources\data.7z" />
+    <EmbeddedResource Include="Resources\cfg.ezcfg" />
+    <EmbeddedResource Include="Resources\data.7z" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\7z.dll" />
-    <Content Include="Resources\7z.exe" />
-    <Content Include="Resources\icon.ico" />
-    <Content Include="Resources\Newtonsoft.Json.dll" />
-    <Content Include="Resources\ReadAndWriteSharp.dll" />
-    <Content Include="Resources\shortcut.exe" />
+    <EmbeddedResource Include="Resources\7z.dll" />
+    <EmbeddedResource Include="Resources\7z.exe" />
+    <EmbeddedResource Include="Resources\icon.ico" />
+    <EmbeddedResource Include="Resources\Newtonsoft.Json.dll" />
+    <EmbeddedResource Include="Resources\ReadAndWriteSharp.dll" />
+    <EmbeddedResource Include="Resources\shortcut.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\installing.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

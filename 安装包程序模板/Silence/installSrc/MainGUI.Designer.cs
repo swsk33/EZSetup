@@ -36,9 +36,9 @@ namespace InstallPack
             // 
             // installingGif
             // 
-            this.installingGif.Location = new System.Drawing.Point(54, 49);
+            this.installingGif.Location = new System.Drawing.Point(30, 42);
             this.installingGif.Name = "installingGif";
-            this.installingGif.Size = new System.Drawing.Size(75, 41);
+            this.installingGif.Size = new System.Drawing.Size(104, 55);
             this.installingGif.TabIndex = 0;
             this.installingGif.TabStop = false;
             // 

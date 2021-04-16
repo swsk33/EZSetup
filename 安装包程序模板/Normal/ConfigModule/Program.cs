@@ -6,7 +6,7 @@ namespace InstallPack.ConfigModule
     class Program
     {
         /// <summary>
-        /// 状态码，直接关闭而未完成配置则为0，完成配置则返回打包路径
+        /// 状态码，直接关闭而未完成配置则为0，完成配置则返回打包路径和是否生成卸载程序
         /// </summary>
         public static string code = "0";
 
