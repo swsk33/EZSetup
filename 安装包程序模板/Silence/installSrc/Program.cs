@@ -113,6 +113,7 @@ namespace InstallPack
         /// </summary>
         public static void DoAfterInstall()
         {
+            Environment.CurrentDirectory = ConfigUtils.GlobalConfigure.InstallPath;
             if (ConfigUtils.GlobalConfigure.OpenAfterSetup)
             {
                 Process.Start(ConfigUtils.GlobalConfigure.InstallPath + "\\" + ConfigUtils.GlobalConfigure.MainEXE);

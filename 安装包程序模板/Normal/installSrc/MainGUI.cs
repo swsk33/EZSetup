@@ -91,9 +91,10 @@ namespace InstallPack
         private void done_Click(object sender, EventArgs e)
         {
             Hide();
+            Environment.CurrentDirectory = pathValue.Text;
             if (ConfigUtils.GlobalConfigure.OpenAfterSetup && openNow.Checked)
             {
-                Process.Start(pathValue.Text + "\\" + ConfigUtils.GlobalConfigure.MainEXE);
+                Process.Start(ConfigUtils.GlobalConfigure.MainEXE);
             }
             if (!ConfigUtils.GlobalConfigure.RunAfterSetup.Equals(""))
             {
