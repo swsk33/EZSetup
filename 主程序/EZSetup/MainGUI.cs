@@ -14,6 +14,11 @@ namespace EZSetup
         /// </summary>
         public static Dictionary<string, string> cscVersions = new Dictionary<string, string>();
 
+        /// <summary>
+        /// 引用7z的路径
+        /// </summary>
+        private static string refer7zPath = "Refer\\7z\\x64\\7z.exe";
+
         public MainGUI()
         {
             InitializeComponent();
@@ -55,6 +60,11 @@ namespace EZSetup
             }
             else
             {
+                //检测操作系统位数
+                if (!Environment.Is64BitOperatingSystem)
+                {
+                    refer7zPath = "Refer\\7z\\x86\\7z.exe";
+                }
                 foreach (string v in cscVersions.Keys)
                 {
                     cscVersionBox.Items.Add(v);
@@ -96,7 +106,7 @@ namespace EZSetup
             Application.DoEvents();
             string tmpDir = createTmpDir();
             Environment.SetEnvironmentVariable("Path", cscVersions[cscVersionBox.SelectedItem.ToString()] + ";" + Environment.GetEnvironmentVariable("Path"));
-            TerminalUtils.RunCommand("Refer\\7z.exe", "x \"TemplatePack\\" + templateList.SelectedItem.ToString() + ".7z\" -o\"" + tmpDir + "\"");
+            TerminalUtils.RunCommand(refer7zPath, "x \"TemplatePack\\" + templateList.SelectedItem.ToString() + ".7z\" -o\"" + tmpDir + "\"");
             prepareTip.Visible = false;
             ok.Enabled = true;
             Visible = false;
@@ -140,13 +150,13 @@ namespace EZSetup
                 }
                 File.Delete(tmpDir + "\\Resources\\data.7z");
                 string compressCommandArgs = "a -y -t7z " + compressLevelArg + " \"" + tmpDir + "\\Resources\\data.7z\" \"" + packedPath + "\\*\"";
-                TerminalUtils.RunCommand("Refer\\7z", compressCommandArgs);
+                TerminalUtils.RunCommand(refer7zPath, compressCommandArgs);
                 form.progressBar.Value = 75;
                 Application.DoEvents();
                 if (genUninstall.StartsWith("1") && !File.Exists(packedPath + "\\uninstall.exe"))
                 {
                     TerminalUtils.RunCommand(tmpDir + "\\build.bat", "u uninstall.exe");
-                    TerminalUtils.RunCommand("Refer\\7z", "a -y " + "\"" + tmpDir + "\\Resources\\data.7z\" \"" + tmpDir + "\\uninstall.exe\"");
+                    TerminalUtils.RunCommand(refer7zPath, "a -y " + "\"" + tmpDir + "\\Resources\\data.7z\" \"" + tmpDir + "\\uninstall.exe\"");
                 }
                 form.progressBar.Value = 90;
                 Application.DoEvents();
