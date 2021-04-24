@@ -126,29 +126,39 @@ namespace InstallPack
             {
                 Directory.CreateDirectory(pathValue.Text);
             }
-            long totalSize = ConfigUtils.GlobalConfigure.PackedDirSize;
+            long totalSize = IOUtils.Get7zOriginSize(ConfigUtils.WORK_PLACE + "\\data.7z");
             TerminalResult result = new TerminalResult();
             TerminalUtils.RunCommandAsynchronously("7z", "x \"" + ConfigUtils.WORK_PLACE + "\\data.7z\" -o\"" + pathValue.Text + "\"", result);
-            int ratio;
+            int ratio = 0;
             string curFile;
             while (!result.IsFinished())
             {
-                DirInfo info = new DirInfo();
-                BinaryUtils.GetDirectoryInfo(pathValue.Text, info);
-                ratio = (int)((float)info.GetSize() / totalSize * 100);
-                if (ratio > 100)
+                try
                 {
-                    ratio = 100;
+                    DirInfo info = new DirInfo();
+                    BinaryUtils.GetDirectoryInfo(pathValue.Text, info);
+                    ratio = (int)((float)info.GetSize() / totalSize * 100);
+                    if (ratio > 100)
+                    {
+                        ratio = 100;
+                    }
+                    List<string> fileList = info.GetFileList();
+                    if (fileList.Count > 0)
+                    {
+                        curFile = fileList[fileList.Count - 1];
+                        currentFile.Text = "正在释放：" + curFile.Substring(curFile.LastIndexOf("\\") + 1);
+                    }
                 }
-                List<string> fileList = info.GetFileList();
-                if (fileList.Count > 0)
+                catch
                 {
-                    curFile = fileList[fileList.Count - 1];
-                    currentFile.Text = "正在释放：" + curFile.Substring(curFile.LastIndexOf("\\") + 1);
+                    //none
                 }
-                processValue.Text = ratio + "%";
-                progressBar.Value = ratio;
-                Application.DoEvents();
+                finally
+                {
+                    processValue.Text = ratio + "%";
+                    progressBar.Value = ratio;
+                    Application.DoEvents();
+                }
             }
             //安装完成，写入相应注册表和创建快捷方式
             if (ConfigUtils.GlobalConfigure.GenerateShortcut && addDesktopIcon.Checked)

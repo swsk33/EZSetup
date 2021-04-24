@@ -54,6 +54,19 @@ namespace InstallPack.Util
         }
 
         /// <summary>
+        /// 利用7z命令获取压缩文件解压后的大小
+        /// </summary>
+        /// <param name="filePath">压缩文件</param>
+        /// <returns></returns>
+        public static long Get7zOriginSize(string filePath)
+        {
+            string[] terminalResult = TerminalUtils.RunCommand("7z", "l \"" + filePath + "\"");
+            string sizeInfo = terminalResult[0].Substring(terminalResult[0].LastIndexOf(":") + 3).Trim();
+            sizeInfo = sizeInfo.Substring(0, sizeInfo.IndexOf(" "));
+            return long.Parse(sizeInfo);
+        }
+
+        /// <summary>
         /// 释放内嵌资源至指定位置
         /// </summary>
         /// <param name="resource">嵌入的资源，此参数写作：命名空间.文件夹名.文件名.扩展名</param>

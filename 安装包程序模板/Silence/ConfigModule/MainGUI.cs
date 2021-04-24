@@ -155,9 +155,6 @@ namespace InstallPack.ConfigModule
             cfg.OpenAfterSetup = openAfterSetup.Checked;
             cfg.GenerateUninstall = genUnsetup.Checked;
             cfg.ShowInstallProcess = showInstallWindow.Checked;
-            DirInfo dirInfo = new DirInfo();
-            BinaryUtils.GetDirectoryInfo(dirValue.Text, dirInfo);
-            cfg.PackedDirSize = dirInfo.GetSize();
             string currentDir = AppDomain.CurrentDomain.BaseDirectory;
             if (!Directory.Exists(currentDir + "\\Resources"))
             {

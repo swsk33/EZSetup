@@ -45,11 +45,6 @@ namespace InstallPack.Model
         private string packedDir;
 
         /// <summary>
-        /// 待打包文件夹大小
-        /// </summary>
-        private long packedDirSize;
-
-        /// <summary>
         /// 主程序文件
         /// </summary>
         private string mainEXE;
@@ -204,19 +199,6 @@ namespace InstallPack.Model
             set
             {
                 shortcutList = value;
-            }
-        }
-
-        public long PackedDirSize
-        {
-            get
-            {
-                return packedDirSize;
-            }
-
-            set
-            {
-                packedDirSize = value;
             }
         }
     }

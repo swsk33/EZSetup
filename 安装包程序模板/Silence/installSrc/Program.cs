@@ -73,7 +73,6 @@ namespace InstallPack
             {
                 Directory.CreateDirectory(ConfigUtils.GlobalConfigure.InstallPath);
             }
-            long totalSize = ConfigUtils.GlobalConfigure.PackedDirSize;
             TerminalResult result = new TerminalResult();
             TerminalUtils.RunCommandAsynchronously("7z", "x \"" + ConfigUtils.WORK_PLACE + "\\data.7z\" -o\"" + ConfigUtils.GlobalConfigure.InstallPath + "\"", result);
             //安装完成，写入相应注册表和创建快捷方式
