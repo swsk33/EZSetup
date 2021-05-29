@@ -118,8 +118,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Resources\cfg.ezcfg" />
-    <EmbeddedResource Include="Resources\data.7z" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\7z.dll" />
