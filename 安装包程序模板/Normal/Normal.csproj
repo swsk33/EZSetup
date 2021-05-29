@@ -47,7 +47,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>InstallPack.Program</StartupObject>
+    <StartupObject>InstallPack.ConfigModule.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -145,8 +145,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Resources\cfg.ezcfg" />
-    <EmbeddedResource Include="Resources\data.7z" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\icon.ico" />
@@ -156,9 +154,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\7z.exe" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\shortcut.exe" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\ReadAndWriteSharp.dll" />
@@ -172,6 +167,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\shortcut.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

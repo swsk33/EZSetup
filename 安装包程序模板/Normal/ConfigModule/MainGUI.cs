@@ -1,7 +1,5 @@
 ﻿using InstallPack.Model;
 using Newtonsoft.Json;
-using Swsk33.ReadAndWriteSharp;
-using Swsk33.ReadAndWriteSharp.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,7 +9,7 @@ using System.Windows.Forms;
 
 namespace InstallPack.ConfigModule
 {
-    public partial class MainGUI : Form
+	public partial class MainGUI : Form
     {
         public MainGUI()
         {
@@ -24,6 +22,9 @@ namespace InstallPack.ConfigModule
             Assembly assembly = Assembly.GetExecutingAssembly();
             BufferedStream iconStream = new BufferedStream(assembly.GetManifestResourceStream("InstallPack.Resources.icon.ico"));
             Icon = new Icon(iconStream);
+            //设定一些初始值
+            publisherValue.Text = Environment.UserName;
+            versionValue.Text = "1.0.0";
         }
 
         private void selectDir_Click(object sender, System.EventArgs e)
@@ -149,6 +150,16 @@ namespace InstallPack.ConfigModule
                 MessageBox.Show("请填写默认安装路径！", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (versionValue.Equals(""))
+			{
+                MessageBox.Show("请填写版本号！", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (publisherValue.Equals(""))
+			{
+                MessageBox.Show("请填写发布者！", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             //写入配置文件
             Configure cfg = new Configure();
             cfg.Title = titleValue.Text;
@@ -162,9 +173,12 @@ namespace InstallPack.ConfigModule
             }
             cfg.ShortcutList = shortcuts;
             cfg.InstallPath = installPathValue.Text;
+            cfg.Publisher = publisherValue.Text;
+            cfg.Version = versionValue.Text;
             cfg.License = licenseText.Text;
             cfg.AddBootOption = addBootOption.Checked;
             cfg.RunAfterSetup = runafterValue.Text;
+            cfg.RunBeforeUnSetup = runBeforeUnValue.Text;
             cfg.OpenAfterSetup = openAfterSetup.Checked;
             cfg.GenerateUninstall = genUnsetup.Checked;
             string currentDir = AppDomain.CurrentDomain.BaseDirectory;
@@ -186,5 +200,17 @@ namespace InstallPack.ConfigModule
             Program.code = cfg.PackedDir + "|" + uninstallCode;
             Close();
         }
-    }
+
+		private void genUnsetup_CheckedChanged(object sender, EventArgs e)
+		{
+            if (genUnsetup.Checked)
+			{
+                runBeforeUnValue.Enabled = true;
+			}
+            else
+			{
+                runBeforeUnValue.Enabled = false;
+			}
+		}
+	}
 }

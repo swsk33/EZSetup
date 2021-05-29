@@ -31,7 +31,7 @@ namespace InstallPack
             }
             bool extract7z = IOUtils.ExtractFile("InstallPack.Resources.7z.exe", ConfigUtils.WORK_PLACE + "\\7z.exe") && IOUtils.ExtractFile("InstallPack.Resources.7z.dll", ConfigUtils.WORK_PLACE + "\\7z.dll");
             bool extractConf = IOUtils.ExtractFile("InstallPack.Resources.cfg.ezcfg", ConfigUtils.WORK_PLACE + "\\cfg.ezcfg");
-            bool extractTool = IOUtils.ExtractFile("InstallPack.Resources.shortcut.exe", ConfigUtils.WORK_PLACE + "\\shortcut.exe");
+            bool extractTool = IOUtils.ExtractFile("InstallPack.Resources.shortcut.vbs", ConfigUtils.WORK_PLACE + "\\shortcut.vbs");
             bool extractData = IOUtils.ExtractFile("InstallPack.Resources.data.7z", ConfigUtils.WORK_PLACE + "\\data.7z");
             if (!(extract7z && extractConf && extractTool && extractData))
             {

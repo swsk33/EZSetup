@@ -56,8 +56,8 @@ goto end
 :buildUnInstall
 cd /d %~dp0
 set unIcon="Resources\icon.ico"
-set unResCommand=/res:"Resources\icon.ico",InstallPack.Resources.icon.ico /res:"Resources\cfg.ezcfg",InstallPack.Resources.cfg.ezcfg /res:"Resources\Newtonsoft.Json.dll",InstallPack.Resources.Newtonsoft.Json.dll
-set unLibCommand=/lib:"Resources" /r:"Newtonsoft.Json.dll"
+set unResCommand=/res:"Resources\icon.ico",InstallPack.Resources.icon.ico /res:"Resources\cfg.ezcfg",InstallPack.Resources.cfg.ezcfg /res:"Resources\Newtonsoft.Json.dll",InstallPack.Resources.Newtonsoft.Json.dll /res:"Resources\ReadAndWriteSharp.dll",InstallPack.Resources.ReadAndWriteSharp.dll
+set unLibCommand=/lib:"Resources" /r:"Newtonsoft.Json.dll" /r:"ReadAndWriteSharp.dll"
 set unSrc="UninstallModule\*.cs" "Model\*.cs"
 csc %unResCommand% %unLibCommand% /win32icon:%unIcon% /win32manifest:"app.manifest" /out:%out% /t:winexe /platform:anycpu %unSrc%
 goto end

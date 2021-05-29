@@ -2,204 +2,258 @@
 
 namespace InstallPack.Model
 {
-    class Configure
-    {
-        /// <summary>
-        /// 标题
-        /// </summary>
-        private string title;
+	class Configure
+	{
+		/// <summary>
+		/// 标题
+		/// </summary>
+		private string title;
 
-        /// <summary>
-        /// 协议内容
-        /// </summary>
-        private string license;
+		/// <summary>
+		/// 协议内容
+		/// </summary>
+		private string license;
 
-        /// <summary>
-        /// 是否生成快捷方式
-        /// </summary>
-        private bool generateShortcut;
+		/// <summary>
+		/// 是否生成快捷方式
+		/// </summary>
+		private bool generateShortcut;
 
-        /// <summary>
-        /// 快捷方式列表
-        /// </summary>
-        private List<string> shortcutList;
+		/// <summary>
+		/// 快捷方式列表
+		/// </summary>
+		private List<string> shortcutList;
 
-        /// <summary>
-        /// 是否添加开机启动项
-        /// </summary>
-        private bool addBootOption;
+		/// <summary>
+		/// 是否添加开机启动项
+		/// </summary>
+		private bool addBootOption;
 
-        /// <summary>
-        /// 是否安装完成后打开
-        /// </summary>
-        private bool openAfterSetup;
+		/// <summary>
+		/// 是否安装完成后打开
+		/// </summary>
+		private bool openAfterSetup;
 
-        /// <summary>
-        /// 默认安装路径
-        /// </summary>
-        private string installPath;
+		/// <summary>
+		/// 默认安装路径
+		/// </summary>
+		private string installPath;
 
-        /// <summary>
-        /// 待打包文件夹
-        /// </summary>
-        private string packedDir;
+		/// <summary>
+		/// 待打包文件夹
+		/// </summary>
+		private string packedDir;
 
-        /// <summary>
-        /// 主程序文件
-        /// </summary>
-        private string mainEXE;
+		/// <summary>
+		/// 主程序文件
+		/// </summary>
+		private string mainEXE;
 
-        /// <summary>
-        /// 安装完成运行的命令
-        /// </summary>
-        private string runAfterSetup;
+		/// <summary>
+		/// 安装完成运行的命令
+		/// </summary>
+		private string runAfterSetup;
 
-        /// <summary>
-        /// 是否生成卸载程序
-        /// </summary>
-        private bool generateUninstall;
+		/// <summary>
+		/// 卸载之前命令
+		/// </summary>
+		private string runBeforeUnSetup;
 
-        public string Title
-        {
-            get
-            {
-                return title;
-            }
+		/// <summary>
+		/// 是否生成卸载程序
+		/// </summary>
+		private bool generateUninstall;
 
-            set
-            {
-                title = value;
-            }
-        }
+		/// <summary>
+		/// 发布者
+		/// </summary>
+		private string publisher;
 
-        public string License
-        {
-            get
-            {
-                return license;
-            }
+		/// <summary>
+		/// 版本
+		/// </summary>
+		private string version;
 
-            set
-            {
-                license = value;
-            }
-        }
+		public string Title
+		{
+			get
+			{
+				return title;
+			}
 
-        public bool GenerateShortcut
-        {
-            get
-            {
-                return generateShortcut;
-            }
+			set
+			{
+				title = value;
+			}
+		}
 
-            set
-            {
-                generateShortcut = value;
-            }
-        }
+		public string License
+		{
+			get
+			{
+				return license;
+			}
 
-        public bool AddBootOption
-        {
-            get
-            {
-                return addBootOption;
-            }
+			set
+			{
+				license = value;
+			}
+		}
 
-            set
-            {
-                addBootOption = value;
-            }
-        }
+		public bool GenerateShortcut
+		{
+			get
+			{
+				return generateShortcut;
+			}
 
-        public bool OpenAfterSetup
-        {
-            get
-            {
-                return openAfterSetup;
-            }
+			set
+			{
+				generateShortcut = value;
+			}
+		}
 
-            set
-            {
-                openAfterSetup = value;
-            }
-        }
+		public bool AddBootOption
+		{
+			get
+			{
+				return addBootOption;
+			}
 
-        public string InstallPath
-        {
-            get
-            {
-                return installPath;
-            }
+			set
+			{
+				addBootOption = value;
+			}
+		}
 
-            set
-            {
-                installPath = value;
-            }
-        }
+		public bool OpenAfterSetup
+		{
+			get
+			{
+				return openAfterSetup;
+			}
 
-        public string PackedDir
-        {
-            get
-            {
-                return packedDir;
-            }
+			set
+			{
+				openAfterSetup = value;
+			}
+		}
 
-            set
-            {
-                packedDir = value;
-            }
-        }
+		public string InstallPath
+		{
+			get
+			{
+				return installPath;
+			}
 
-        public string MainEXE
-        {
-            get
-            {
-                return mainEXE;
-            }
+			set
+			{
+				installPath = value;
+			}
+		}
 
-            set
-            {
-                mainEXE = value;
-            }
-        }
+		public string PackedDir
+		{
+			get
+			{
+				return packedDir;
+			}
 
-        public string RunAfterSetup
-        {
-            get
-            {
-                return runAfterSetup;
-            }
+			set
+			{
+				packedDir = value;
+			}
+		}
 
-            set
-            {
-                runAfterSetup = value;
-            }
-        }
+		public string MainEXE
+		{
+			get
+			{
+				return mainEXE;
+			}
 
-        public bool GenerateUninstall
-        {
-            get
-            {
-                return generateUninstall;
-            }
+			set
+			{
+				mainEXE = value;
+			}
+		}
 
-            set
-            {
-                generateUninstall = value;
-            }
-        }
+		public string RunAfterSetup
+		{
+			get
+			{
+				return runAfterSetup;
+			}
 
-        public List<string> ShortcutList
-        {
-            get
-            {
-                return shortcutList;
-            }
+			set
+			{
+				runAfterSetup = value;
+			}
+		}
 
-            set
-            {
-                shortcutList = value;
-            }
-        }
-    }
+		public bool GenerateUninstall
+		{
+			get
+			{
+				return generateUninstall;
+			}
+
+			set
+			{
+				generateUninstall = value;
+			}
+		}
+
+		public List<string> ShortcutList
+		{
+			get
+			{
+				return shortcutList;
+			}
+
+			set
+			{
+				shortcutList = value;
+			}
+		}
+
+		public string Publisher
+		{
+			get
+			{
+				return publisher;
+			}
+
+			set
+			{
+				publisher = value;
+			}
+		}
+
+		public string Version
+		{
+			get
+			{
+				return version;
+			}
+
+			set
+			{
+				version = value;
+			}
+		}
+
+		public string RunBeforeUnSetup
+		{
+			get
+			{
+				return runBeforeUnSetup;
+			}
+
+			set
+			{
+				runBeforeUnSetup = value;
+			}
+		}
+	}
 }

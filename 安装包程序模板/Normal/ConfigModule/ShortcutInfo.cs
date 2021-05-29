@@ -32,7 +32,16 @@ namespace InstallPack.ConfigModule
                 MessageBox.Show("快捷方式原文件或者快捷方式名不能为空！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Program.mainGUI.shortcutList.Items.Add(originFileValue.Text + "|" + shortcutNameValue.Text);
+            string addValue;
+            if (runArgsValue.Text.Equals(""))
+			{
+                addValue = originFileValue.Text + "|" + shortcutNameValue.Text;
+            }
+            else
+			{
+                addValue = originFileValue.Text + "|" + shortcutNameValue.Text + "|" + runArgsValue.Text;
+			}
+            Program.mainGUI.shortcutList.Items.Add(addValue);
             Close();
         }
 
@@ -43,5 +52,5 @@ namespace InstallPack.ConfigModule
             BufferedStream iconStream = new BufferedStream(assembly.GetManifestResourceStream("InstallPack.Resources.icon.ico"));
             Icon = new Icon(iconStream);
         }
-    }
+	}
 }
