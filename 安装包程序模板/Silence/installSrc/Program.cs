@@ -108,12 +108,20 @@ namespace InstallPack
 			}
 			if (ConfigUtils.GlobalConfigure.AddBootOption)
 			{
-				IOUtils.AddBootOption(ConfigUtils.GlobalConfigure.Title, ConfigUtils.GlobalConfigure.InstallPath + "\\" + ConfigUtils.GlobalConfigure.MainEXE);
+				RegUtils.OperateBootOption(ConfigUtils.GlobalConfigure.Title, ConfigUtils.GlobalConfigure.InstallPath + "\\" + ConfigUtils.GlobalConfigure.MainEXE, true);
 			}
 			//如果生成卸载程序，则加入注册表程序信息
 			if (ConfigUtils.GlobalConfigure.GenerateUninstall)
 			{
-				IOUtils.AddUninstallInfo(ConfigUtils.GlobalConfigure.Title, ConfigUtils.GlobalConfigure.InstallPath, ConfigUtils.GlobalConfigure.MainEXE, "uninstall.exe", IOUtils.Get7zOriginSize(ConfigUtils.WORK_PLACE + "\\data.7z") / 1000, ConfigUtils.GlobalConfigure.Version, ConfigUtils.GlobalConfigure.Publisher);
+				AppUninstallInfo info = new AppUninstallInfo();
+				info.DisplayName = ConfigUtils.GlobalConfigure.Title;
+				info.InstallPath = ConfigUtils.GlobalConfigure.InstallPath;
+				info.UninstallString = ConfigUtils.GlobalConfigure.InstallPath + "\\uninstall.exe";
+				info.DisplayIcon = ConfigUtils.GlobalConfigure.InstallPath + "\\" + ConfigUtils.GlobalConfigure.MainEXE;
+				info.EstimatedSize = IOUtils.Get7zOriginSize(ConfigUtils.WORK_PLACE + "\\data.7z") / 1000;
+				info.DisplayVersion = ConfigUtils.GlobalConfigure.Version;
+				info.Publisher = ConfigUtils.GlobalConfigure.Publisher;
+				RegUtils.OperateAppUninstallItem(info, true);
 				if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms) + "\\" + ConfigUtils.GlobalConfigure.Title))
 				{
 					Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms) + "\\" + ConfigUtils.GlobalConfigure.Title);

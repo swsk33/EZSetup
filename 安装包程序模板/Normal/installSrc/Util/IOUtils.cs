@@ -1,7 +1,5 @@
-﻿using Microsoft.Win32;
-using Swsk33.ReadAndWriteSharp;
+﻿using Swsk33.ReadAndWriteSharp;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 

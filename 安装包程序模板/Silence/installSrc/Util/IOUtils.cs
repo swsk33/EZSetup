@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using Swsk33.ReadAndWriteSharp;
+﻿using Swsk33.ReadAndWriteSharp;
 using System;
 using System.IO;
 using System.Reflection;
@@ -39,46 +38,6 @@ namespace InstallPack.Util
 		{
 			string workingDirectory = exePath.Substring(0, exePath.LastIndexOf("\\"));
 			TerminalUtils.RunCommand(ConfigUtils.WORK_PLACE + "\\shortcut.exe", SurroundByDoubleQuotes(exePath) + " " + SurroundByDoubleQuotes(destPath) + " " + SurroundByDoubleQuotes(workingDirectory) + " " + args);
-		}
-
-		/// <summary>
-		/// 添加程序启动项
-		/// </summary>
-		/// <param name="name">启动项名称</param>
-		/// <param name="path">启动项路径</param>
-		public static void AddBootOption(string name, string path)
-		{
-			RegistryKey mainKey = Registry.LocalMachine;
-			RegistryKey bootOptionKey = mainKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
-			bootOptionKey.SetValue(name, path, RegistryValueKind.String);
-			bootOptionKey.Close();
-		}
-
-		/// <summary>
-		/// 添加程序卸载信息
-		/// </summary>
-		/// <param name="name">程序名</param>
-		/// <param name="installPath">安装目录</param>
-		/// <param name="mainProgram">主程序名</param>
-		/// <param name="uninstallProgram">卸载程序名</param>
-		/// <param name="publisher">发布者</param>
-		/// <param name="size">估计大小（kb）</param>
-		/// <param name="version">版本</param>
-		public static void AddUninstallInfo(string name, string installPath, string mainProgram, string uninstallProgram, long size, string version, string publisher)
-		{
-			RegistryKey mainKey = Registry.LocalMachine;
-			RegistryKey uninstallInfo = mainKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall", true);
-			uninstallInfo.CreateSubKey(name);
-			RegistryKey appInfo = mainKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\" + name, true);
-			appInfo.SetValue("DisplayIcon", installPath + "\\" + mainProgram);
-			appInfo.SetValue("DisplayName", name);
-			appInfo.SetValue("InstallLocation", installPath);
-			appInfo.SetValue("UninstallString", installPath + "\\" + uninstallProgram);
-			appInfo.SetValue("Publisher", publisher);
-			appInfo.SetValue("EstimatedSize", size, RegistryValueKind.DWord);
-			appInfo.SetValue("DisplayVersion", version);
-			uninstallInfo.Close();
-			appInfo.Close();
 		}
 
 		/// <summary>

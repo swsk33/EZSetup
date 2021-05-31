@@ -1,5 +1,4 @@
 ﻿using InstallPack.Model;
-using Microsoft.Win32;
 using Newtonsoft.Json;
 using Swsk33.ReadAndWriteSharp;
 using Swsk33.ReadAndWriteSharp.Model;
@@ -27,7 +26,7 @@ namespace InstallPack.UninstallModule
 		/// <param name="resource">嵌入的资源，此参数写作：命名空间.文件夹名.文件名.扩展名</param>
 		/// <param name="path">释放到位置</param>
 		/// <returns>是否释放成功</returns>
-		public static bool ExtractFile(String resource, String path)
+		public static bool ExtractFile(string resource, string path)
 		{
 			bool result = false;
 			Assembly assembly = Assembly.GetExecutingAssembly();
@@ -101,7 +100,6 @@ namespace InstallPack.UninstallModule
 					//none
 				}
 			}
-			RegistryKey mainKey = Registry.LocalMachine;
 			if (cfg.AddBootOption)
 			{
 				state.Text = "正在移除开机启动项...";
