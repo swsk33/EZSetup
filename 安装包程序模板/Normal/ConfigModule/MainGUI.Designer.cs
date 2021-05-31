@@ -250,7 +250,7 @@ namespace InstallPack.ConfigModule
 			// 
 			this.addBootOption.AutoSize = true;
 			this.addBootOption.Font = new System.Drawing.Font("宋体", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.addBootOption.Location = new System.Drawing.Point(249, 532);
+			this.addBootOption.Location = new System.Drawing.Point(270, 532);
 			this.addBootOption.Name = "addBootOption";
 			this.addBootOption.Size = new System.Drawing.Size(166, 21);
 			this.addBootOption.TabIndex = 3;
@@ -263,9 +263,9 @@ namespace InstallPack.ConfigModule
 			this.openAfterSetup.Font = new System.Drawing.Font("宋体", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.openAfterSetup.Location = new System.Drawing.Point(26, 532);
 			this.openAfterSetup.Name = "openAfterSetup";
-			this.openAfterSetup.Size = new System.Drawing.Size(183, 21);
+			this.openAfterSetup.Size = new System.Drawing.Size(217, 21);
 			this.openAfterSetup.TabIndex = 3;
-			this.openAfterSetup.Text = "显示安装完成后运行";
+			this.openAfterSetup.Text = "显示安装完成后打开程序";
 			this.openAfterSetup.UseVisualStyleBackColor = true;
 			// 
 			// titleValue

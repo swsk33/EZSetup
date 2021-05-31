@@ -98,7 +98,16 @@ namespace InstallPack
 			}
 			if (!ConfigUtils.GlobalConfigure.RunAfterSetup.Equals(""))
 			{
-				IOUtils.RunCommandString(ConfigUtils.GlobalConfigure.RunAfterSetup);
+				if (ConfigUtils.GlobalConfigure.RunAfterSetup.Contains(" "))
+				{
+					string command = ConfigUtils.GlobalConfigure.RunAfterSetup.Substring(0, ConfigUtils.GlobalConfigure.RunAfterSetup.IndexOf(" "));
+					string args = ConfigUtils.GlobalConfigure.RunAfterSetup.Substring(ConfigUtils.GlobalConfigure.RunAfterSetup.IndexOf(" ") + 1);
+					TerminalUtils.RunCommand(command, args);
+				}
+				else
+				{
+					Process.Start(ConfigUtils.GlobalConfigure.RunAfterSetup);
+				}
 			}
 			Application.Exit();
 		}
@@ -131,18 +140,18 @@ namespace InstallPack
 			TerminalUtils.RunCommandAsynchronously("7z", "x " + IOUtils.SurroundByDoubleQuotes(ConfigUtils.WORK_PLACE + "\\data.7z") + " -o" + IOUtils.SurroundByDoubleQuotes(pathValue.Text), result);
 			int ratio = 0;
 			string curFile;
-			while (!result.IsFinished())
+			while (!result.Finished)
 			{
 				try
 				{
 					DirInfo info = new DirInfo();
 					BinaryUtils.GetDirectoryInfo(pathValue.Text, info);
-					ratio = (int)((float)info.GetSize() / totalSize * 100);
+					ratio = (int)((float)info.Size / totalSize * 100);
 					if (ratio > 100)
 					{
 						ratio = 100;
 					}
-					List<string> fileList = info.GetFileList();
+					List<string> fileList = info.FileList;
 					if (fileList.Count > 0)
 					{
 						curFile = fileList[fileList.Count - 1];
@@ -193,12 +202,20 @@ namespace InstallPack
 			}
 			if (ConfigUtils.GlobalConfigure.AddBootOption && addBootOption.Checked)
 			{
-				IOUtils.AddBootOption(ConfigUtils.GlobalConfigure.Title, pathValue.Text + "\\" + ConfigUtils.GlobalConfigure.MainEXE);
+				RegUtils.OperateBootOption(ConfigUtils.GlobalConfigure.Title, pathValue.Text + "\\" + ConfigUtils.GlobalConfigure.MainEXE, true);
 			}
 			//如果生成卸载程序，则加入注册表程序信息
 			if (ConfigUtils.GlobalConfigure.GenerateUninstall)
 			{
-				IOUtils.AddUninstallInfo(ConfigUtils.GlobalConfigure.Title, pathValue.Text, ConfigUtils.GlobalConfigure.MainEXE, "uninstall.exe", totalSize / 1000, ConfigUtils.GlobalConfigure.Version, ConfigUtils.GlobalConfigure.Publisher);
+				AppUninstallInfo info = new AppUninstallInfo();
+				info.DisplayName = ConfigUtils.GlobalConfigure.Title;
+				info.InstallPath = pathValue.Text;
+				info.UninstallString = pathValue.Text + "\\uninstall.exe";
+				info.DisplayIcon = pathValue.Text + "\\" + ConfigUtils.GlobalConfigure.MainEXE;
+				info.EstimatedSize = totalSize / 1000;
+				info.DisplayVersion = ConfigUtils.GlobalConfigure.Version;
+				info.Publisher = ConfigUtils.GlobalConfigure.Publisher;
+				RegUtils.OperateAppUninstallItem(info, true);
 				if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms) + "\\" + ConfigUtils.GlobalConfigure.Title))
 				{
 					Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms) + "\\" + ConfigUtils.GlobalConfigure.Title);

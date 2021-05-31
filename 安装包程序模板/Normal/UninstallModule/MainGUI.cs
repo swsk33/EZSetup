@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using Swsk33.ReadAndWriteSharp;
+using Swsk33.ReadAndWriteSharp.Model;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -47,24 +48,6 @@ namespace InstallPack.UninstallModule
 			return result;
 		}
 
-		/// <summary>
-		/// 运行整条命令
-		/// </summary>
-		/// <param name="totalCommand">命令</param>
-		public static void RunCommandString(string totalCommand)
-		{
-			if (totalCommand.Contains(" "))
-			{
-				string command = totalCommand.Substring(0, totalCommand.IndexOf(" "));
-				string args = totalCommand.Substring(totalCommand.IndexOf(" ") + 1);
-				TerminalUtils.RunCommand(command, args);
-			}
-			else
-			{
-				Process.Start(totalCommand);
-			}
-		}
-
 		public MainGUI()
 		{
 			InitializeComponent();
@@ -72,6 +55,7 @@ namespace InstallPack.UninstallModule
 
 		private void cancel_Click(object sender, EventArgs e)
 		{
+			Directory.Delete(WORK_PLACE, true);
 			Application.Exit();
 		}
 
@@ -86,7 +70,16 @@ namespace InstallPack.UninstallModule
 				state.Text = "正在执行卸载前命令...";
 				Application.DoEvents();
 				Environment.CurrentDirectory = appPath;
-				RunCommandString(cfg.RunBeforeUnSetup);
+				if (cfg.RunBeforeUnSetup.Contains(" "))
+				{
+					string command = cfg.RunBeforeUnSetup.Substring(0, cfg.RunBeforeUnSetup.IndexOf(" "));
+					string args = cfg.RunBeforeUnSetup.Substring(cfg.RunBeforeUnSetup.IndexOf(" ") + 1);
+					TerminalUtils.RunCommand(command, args);
+				}
+				else
+				{
+					Process.Start(cfg.RunBeforeUnSetup);
+				}
 			}
 			if (cfg.GenerateShortcut)
 			{
@@ -113,35 +106,11 @@ namespace InstallPack.UninstallModule
 			{
 				state.Text = "正在移除开机启动项...";
 				Application.DoEvents();
-				RegistryKey bootOptionKey = mainKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
-				try
-				{
-					bootOptionKey.DeleteValue(cfg.Title);
-				}
-				catch
-				{
-					//none
-				}
-				finally
-				{
-					bootOptionKey.Close();
-				}
+				RegUtils.OperateBootOption(cfg.Title, "", false);
 			}
-			RegistryKey appInfoKey = mainKey.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall", true);
-			try
-			{
-				state.Text = "正在移除程序注册表信息...";
-				Application.DoEvents();
-				appInfoKey.DeleteSubKeyTree(cfg.Title);
-			}
-			catch
-			{
-				//none
-			}
-			finally
-			{
-				appInfoKey.Close();
-			}
+			state.Text = "正在移除程序注册表信息...";
+			Application.DoEvents();
+			RegUtils.OperateAppUninstallItem(new AppUninstallInfo(cfg.Title, ""), false);
 			string[] dirList = Directory.GetDirectories(appPath);
 			string[] fileList = Directory.GetFiles(appPath);
 			state.Text = "正在移除文件..";
