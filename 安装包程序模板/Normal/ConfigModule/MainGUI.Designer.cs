@@ -95,7 +95,7 @@ namespace InstallPack.ConfigModule
 			this.selectDir.Location = new System.Drawing.Point(358, 67);
 			this.selectDir.Name = "selectDir";
 			this.selectDir.Size = new System.Drawing.Size(82, 27);
-			this.selectDir.TabIndex = 2;
+			this.selectDir.TabIndex = 1;
 			this.selectDir.Text = "浏览";
 			this.selectDir.UseVisualStyleBackColor = true;
 			this.selectDir.Click += new System.EventHandler(this.selectDir_Click);
@@ -136,7 +136,7 @@ namespace InstallPack.ConfigModule
 			this.generateShortcut.Location = new System.Drawing.Point(26, 180);
 			this.generateShortcut.Name = "generateShortcut";
 			this.generateShortcut.Size = new System.Drawing.Size(132, 21);
-			this.generateShortcut.TabIndex = 3;
+			this.generateShortcut.TabIndex = 5;
 			this.generateShortcut.Text = "生成快捷方式";
 			this.generateShortcut.UseVisualStyleBackColor = true;
 			this.generateShortcut.CheckedChanged += new System.EventHandler(this.generateShortcut_CheckedChanged);
@@ -149,13 +149,15 @@ namespace InstallPack.ConfigModule
 			this.shortcutList.Name = "shortcutList";
 			this.shortcutList.Size = new System.Drawing.Size(413, 79);
 			this.shortcutList.TabIndex = 4;
+			this.shortcutList.TabStop = false;
 			// 
 			// remove
 			// 
 			this.remove.Location = new System.Drawing.Point(389, 195);
 			this.remove.Name = "remove";
 			this.remove.Size = new System.Drawing.Size(51, 27);
-			this.remove.TabIndex = 2;
+			this.remove.TabIndex = 6;
+			this.remove.TabStop = false;
 			this.remove.Text = "删除";
 			this.remove.UseVisualStyleBackColor = true;
 			this.remove.Click += new System.EventHandler(this.remove_Click);
@@ -165,7 +167,7 @@ namespace InstallPack.ConfigModule
 			this.add.Location = new System.Drawing.Point(332, 195);
 			this.add.Name = "add";
 			this.add.Size = new System.Drawing.Size(51, 27);
-			this.add.TabIndex = 2;
+			this.add.TabIndex = 5;
 			this.add.Text = "增加";
 			this.add.UseVisualStyleBackColor = true;
 			this.add.Click += new System.EventHandler(this.add_Click);
@@ -175,7 +177,8 @@ namespace InstallPack.ConfigModule
 			this.clear.Location = new System.Drawing.Point(275, 195);
 			this.clear.Name = "clear";
 			this.clear.Size = new System.Drawing.Size(51, 27);
-			this.clear.TabIndex = 2;
+			this.clear.TabIndex = 6;
+			this.clear.TabStop = false;
 			this.clear.Text = "清空";
 			this.clear.UseVisualStyleBackColor = true;
 			this.clear.Click += new System.EventHandler(this.clear_Click);
@@ -204,7 +207,7 @@ namespace InstallPack.ConfigModule
 			this.selectInstallPath.Location = new System.Drawing.Point(358, 312);
 			this.selectInstallPath.Name = "selectInstallPath";
 			this.selectInstallPath.Size = new System.Drawing.Size(82, 27);
-			this.selectInstallPath.TabIndex = 2;
+			this.selectInstallPath.TabIndex = 6;
 			this.selectInstallPath.Text = "浏览";
 			this.selectInstallPath.UseVisualStyleBackColor = true;
 			this.selectInstallPath.Click += new System.EventHandler(this.selectInstallPath_Click);
@@ -214,7 +217,7 @@ namespace InstallPack.ConfigModule
 			this.installPathValue.Location = new System.Drawing.Point(160, 313);
 			this.installPathValue.Name = "installPathValue";
 			this.installPathValue.Size = new System.Drawing.Size(186, 25);
-			this.installPathValue.TabIndex = 3;
+			this.installPathValue.TabIndex = 6;
 			// 
 			// license
 			// 
@@ -233,7 +236,7 @@ namespace InstallPack.ConfigModule
 			this.licenseText.Name = "licenseText";
 			this.licenseText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.licenseText.Size = new System.Drawing.Size(413, 65);
-			this.licenseText.TabIndex = 4;
+			this.licenseText.TabIndex = 7;
 			// 
 			// loadFromFile
 			// 
@@ -241,7 +244,7 @@ namespace InstallPack.ConfigModule
 			this.loadFromFile.Location = new System.Drawing.Point(388, 348);
 			this.loadFromFile.Name = "loadFromFile";
 			this.loadFromFile.Size = new System.Drawing.Size(52, 23);
-			this.loadFromFile.TabIndex = 2;
+			this.loadFromFile.TabIndex = 7;
 			this.loadFromFile.Text = "导入";
 			this.loadFromFile.UseVisualStyleBackColor = true;
 			this.loadFromFile.Click += new System.EventHandler(this.loadFromFile_Click);
@@ -253,7 +256,7 @@ namespace InstallPack.ConfigModule
 			this.addBootOption.Location = new System.Drawing.Point(270, 532);
 			this.addBootOption.Name = "addBootOption";
 			this.addBootOption.Size = new System.Drawing.Size(166, 21);
-			this.addBootOption.TabIndex = 3;
+			this.addBootOption.TabIndex = 12;
 			this.addBootOption.Text = "显示添加开机启动";
 			this.addBootOption.UseVisualStyleBackColor = true;
 			// 
@@ -264,7 +267,7 @@ namespace InstallPack.ConfigModule
 			this.openAfterSetup.Location = new System.Drawing.Point(26, 532);
 			this.openAfterSetup.Name = "openAfterSetup";
 			this.openAfterSetup.Size = new System.Drawing.Size(217, 21);
-			this.openAfterSetup.TabIndex = 3;
+			this.openAfterSetup.TabIndex = 10;
 			this.openAfterSetup.Text = "显示安装完成后打开程序";
 			this.openAfterSetup.UseVisualStyleBackColor = true;
 			// 
@@ -280,7 +283,7 @@ namespace InstallPack.ConfigModule
 			this.done.Location = new System.Drawing.Point(363, 574);
 			this.done.Name = "done";
 			this.done.Size = new System.Drawing.Size(82, 32);
-			this.done.TabIndex = 6;
+			this.done.TabIndex = 13;
 			this.done.Text = "完成";
 			this.done.UseVisualStyleBackColor = true;
 			this.done.Click += new System.EventHandler(this.done_Click);
@@ -300,7 +303,7 @@ namespace InstallPack.ConfigModule
 			this.runafterValue.Location = new System.Drawing.Point(160, 452);
 			this.runafterValue.Name = "runafterValue";
 			this.runafterValue.Size = new System.Drawing.Size(280, 25);
-			this.runafterValue.TabIndex = 3;
+			this.runafterValue.TabIndex = 8;
 			// 
 			// genUnsetup
 			// 
@@ -309,7 +312,7 @@ namespace InstallPack.ConfigModule
 			this.genUnsetup.Location = new System.Drawing.Point(26, 559);
 			this.genUnsetup.Name = "genUnsetup";
 			this.genUnsetup.Size = new System.Drawing.Size(166, 21);
-			this.genUnsetup.TabIndex = 3;
+			this.genUnsetup.TabIndex = 11;
 			this.genUnsetup.Text = "生成一个卸载程序";
 			this.genUnsetup.UseVisualStyleBackColor = true;
 			this.genUnsetup.CheckedChanged += new System.EventHandler(this.genUnsetup_CheckedChanged);
@@ -339,14 +342,14 @@ namespace InstallPack.ConfigModule
 			this.publisherValue.Location = new System.Drawing.Point(102, 144);
 			this.publisherValue.Name = "publisherValue";
 			this.publisherValue.Size = new System.Drawing.Size(124, 25);
-			this.publisherValue.TabIndex = 1;
+			this.publisherValue.TabIndex = 3;
 			// 
 			// versionValue
 			// 
 			this.versionValue.Location = new System.Drawing.Point(310, 144);
 			this.versionValue.Name = "versionValue";
 			this.versionValue.Size = new System.Drawing.Size(129, 25);
-			this.versionValue.TabIndex = 2;
+			this.versionValue.TabIndex = 4;
 			// 
 			// runBeforeUn
 			// 
@@ -364,7 +367,7 @@ namespace InstallPack.ConfigModule
 			this.runBeforeUnValue.Location = new System.Drawing.Point(160, 490);
 			this.runBeforeUnValue.Name = "runBeforeUnValue";
 			this.runBeforeUnValue.Size = new System.Drawing.Size(280, 25);
-			this.runBeforeUnValue.TabIndex = 3;
+			this.runBeforeUnValue.TabIndex = 9;
 			// 
 			// MainGUI
 			// 

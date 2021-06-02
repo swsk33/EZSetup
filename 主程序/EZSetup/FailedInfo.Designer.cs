@@ -43,11 +43,11 @@ namespace EZSetup
 			this.failedTitle.AutoSize = true;
 			this.failedTitle.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.failedTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-			this.failedTitle.Location = new System.Drawing.Point(56, 19);
+			this.failedTitle.Location = new System.Drawing.Point(234, 18);
 			this.failedTitle.Name = "failedTitle";
-			this.failedTitle.Size = new System.Drawing.Size(370, 19);
+			this.failedTitle.Size = new System.Drawing.Size(465, 19);
 			this.failedTitle.TabIndex = 0;
-			this.failedTitle.Text = "安装包构建失败，以下是错误信息以供参考";
+			this.failedTitle.Text = "安装包构建失败，以下是构建过程的输出信息以供参考";
 			// 
 			// stdOutLabel
 			// 
@@ -65,7 +65,7 @@ namespace EZSetup
 			this.stdErrLabel.AutoSize = true;
 			this.stdErrLabel.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.stdErrLabel.ForeColor = System.Drawing.Color.Red;
-			this.stdErrLabel.Location = new System.Drawing.Point(13, 251);
+			this.stdErrLabel.Location = new System.Drawing.Point(12, 310);
 			this.stdErrLabel.Name = "stdErrLabel";
 			this.stdErrLabel.Size = new System.Drawing.Size(109, 19);
 			this.stdErrLabel.TabIndex = 1;
@@ -73,36 +73,36 @@ namespace EZSetup
 			// 
 			// stdOutValue
 			// 
-			this.stdOutValue.BackColor = System.Drawing.Color.DimGray;
-			this.stdOutValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.stdOutValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.stdOutValue.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.stdOutValue.ForeColor = System.Drawing.Color.Lime;
 			this.stdOutValue.Location = new System.Drawing.Point(31, 85);
 			this.stdOutValue.Multiline = true;
 			this.stdOutValue.Name = "stdOutValue";
 			this.stdOutValue.ReadOnly = true;
 			this.stdOutValue.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.stdOutValue.Size = new System.Drawing.Size(426, 148);
+			this.stdOutValue.Size = new System.Drawing.Size(877, 210);
 			this.stdOutValue.TabIndex = 2;
 			this.stdOutValue.WordWrap = false;
 			// 
 			// stdErrValue
 			// 
-			this.stdErrValue.BackColor = System.Drawing.Color.DimGray;
-			this.stdErrValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.stdErrValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-			this.stdErrValue.Location = new System.Drawing.Point(31, 287);
+			this.stdErrValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.stdErrValue.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.stdErrValue.ForeColor = System.Drawing.Color.HotPink;
+			this.stdErrValue.Location = new System.Drawing.Point(31, 342);
 			this.stdErrValue.Multiline = true;
 			this.stdErrValue.Name = "stdErrValue";
 			this.stdErrValue.ReadOnly = true;
 			this.stdErrValue.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.stdErrValue.Size = new System.Drawing.Size(426, 159);
+			this.stdErrValue.Size = new System.Drawing.Size(877, 203);
 			this.stdErrValue.TabIndex = 2;
 			this.stdErrValue.WordWrap = false;
 			// 
 			// close
 			// 
 			this.close.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.close.Location = new System.Drawing.Point(199, 464);
+			this.close.Location = new System.Drawing.Point(433, 563);
 			this.close.Name = "close";
 			this.close.Size = new System.Drawing.Size(82, 39);
 			this.close.TabIndex = 3;
@@ -114,7 +114,7 @@ namespace EZSetup
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(486, 518);
+			this.ClientSize = new System.Drawing.Size(945, 618);
 			this.Controls.Add(this.close);
 			this.Controls.Add(this.stdErrValue);
 			this.Controls.Add(this.stdOutValue);
