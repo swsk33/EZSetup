@@ -69,7 +69,7 @@ namespace EZSetup
 				{
 					cscVersionBox.Items.Add(v);
 				}
-				cscVersionBox.SelectedIndex = 0;
+				cscVersionBox.SelectedIndex = cscVersions.Count - 1;
 				compressLevelValue.SelectedIndex = 2;
 				string[] templates = Directory.GetFiles("TemplatePack");
 				foreach (string t in templates)
@@ -153,17 +153,19 @@ namespace EZSetup
 					File.Delete(tmpDir + "\\Resources\\data.7z");
 				}
 				string compressCommandArgs = "a -y -t7z " + compressLevelArg + " \"" + tmpDir + "\\Resources\\data.7z\" \"" + packedPath + "\\*\"";
-				TerminalUtils.RunCommand(refer7zPath, compressCommandArgs);
+				string[] compressData = TerminalUtils.RunCommand(refer7zPath, compressCommandArgs);
 				form.progressBar.Value = 75;
 				Application.DoEvents();
+				string[] genUnSetup = null;
+				string[] addUnSetup = null;
 				if (genUninstall.StartsWith("1") && !File.Exists(packedPath + "\\uninstall.exe"))
 				{
-					TerminalUtils.RunCommand(tmpDir + "\\build.bat", "u uninstall.exe");
-					TerminalUtils.RunCommand(refer7zPath, "a -y " + "\"" + tmpDir + "\\Resources\\data.7z\" \"" + tmpDir + "\\uninstall.exe\"");
+					genUnSetup = TerminalUtils.RunCommand(tmpDir + "\\build.bat", "u uninstall.exe");
+					addUnSetup = TerminalUtils.RunCommand(refer7zPath, "a -y " + "\"" + tmpDir + "\\Resources\\data.7z\" \"" + tmpDir + "\\uninstall.exe\"");
 				}
 				form.progressBar.Value = 90;
 				Application.DoEvents();
-				TerminalUtils.RunCommand(tmpDir + "\\build.bat", "i \"" + outputPathValue.Text + "\"");
+				string[] buildInstallPack = TerminalUtils.RunCommand(tmpDir + "\\build.bat", "i \"" + outputPathValue.Text + "\"");
 				form.progressBar.Value = 100;
 				Application.DoEvents();
 				if (File.Exists(outputPathValue.Text))
@@ -178,6 +180,16 @@ namespace EZSetup
 					form.processingTip.Text = "构建失败！";
 					form.processingTip.ForeColor = Color.Red;
 					form.close.Enabled = true;
+					string stdOut = "压缩数据：\r\n" + compressData[0] + "\r\n";
+					string stdErr = "压缩数据：\r\n" + compressData[1] + "\r\n";
+					if (genUnSetup != null)
+					{
+						stdOut = stdOut + "构建卸载程序：\r\n" + genUnSetup[0] + "\r\n添加卸载程序：\r\n" + addUnSetup[0] + "\r\n";
+						stdErr = stdErr + "构建卸载程序：\r\n" + genUnSetup[1] + "\r\n添加卸载程序：\r\n" + addUnSetup[1] + "\r\n";
+					}
+					stdOut = stdOut + "构建安装程序：\r\n" + buildInstallPack[0];
+					stdErr = stdErr + "构建安装程序：\r\n" + buildInstallPack[1];
+					new FailedInfo().InitContent(stdOut, stdErr);
 				}
 			}
 			Directory.Delete(tmpDir, true);
