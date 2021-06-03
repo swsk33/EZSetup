@@ -21,7 +21,18 @@ namespace InstallPack.ConfigModule
 			dialog.Filter = "所有文件(*.*)|*.*";
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				originFileValue.Text = dialog.FileName.Substring(dialog.FileName.LastIndexOf("\\") + 1);
+				string originFileName = dialog.FileName.Substring(dialog.FileName.LastIndexOf("\\") + 1);
+				string shortcutName;
+				if (originFileName.Contains("."))
+				{
+					shortcutName = originFileName.Substring(0, originFileName.LastIndexOf("."));
+				}
+				else
+				{
+					shortcutName = originFileName;
+				}
+				originFileValue.Text = originFileName;
+				shortcutNameValue.Text = shortcutName;
 			}
 		}
 

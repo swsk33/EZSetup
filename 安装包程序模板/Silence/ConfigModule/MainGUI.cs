@@ -202,5 +202,10 @@ namespace InstallPack.ConfigModule
 				runBeforeUnValue.Enabled = false;
 			}
 		}
+
+		private void titleValue_TextChanged(object sender, EventArgs e)
+		{
+			installPathValue.Text = @"D:\Program Files\" + titleValue.Text;
+		}
 	}
 }

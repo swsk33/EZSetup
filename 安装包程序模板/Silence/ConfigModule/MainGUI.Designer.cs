@@ -245,6 +245,7 @@ namespace InstallPack.ConfigModule
 			this.titleValue.Name = "titleValue";
 			this.titleValue.Size = new System.Drawing.Size(244, 25);
 			this.titleValue.TabIndex = 0;
+			this.titleValue.TextChanged += new System.EventHandler(this.titleValue_TextChanged);
 			// 
 			// done
 			// 
@@ -262,15 +263,15 @@ namespace InstallPack.ConfigModule
 			this.runAfter.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.runAfter.Location = new System.Drawing.Point(22, 349);
 			this.runAfter.Name = "runAfter";
-			this.runAfter.Size = new System.Drawing.Size(142, 19);
+			this.runAfter.Size = new System.Drawing.Size(228, 19);
 			this.runAfter.TabIndex = 0;
-			this.runAfter.Text = "安装完成运行：";
+			this.runAfter.Text = "安装完成运行命令/程序：";
 			// 
 			// runafterValue
 			// 
-			this.runafterValue.Location = new System.Drawing.Point(160, 346);
+			this.runafterValue.Location = new System.Drawing.Point(249, 346);
 			this.runafterValue.Name = "runafterValue";
-			this.runafterValue.Size = new System.Drawing.Size(280, 25);
+			this.runafterValue.Size = new System.Drawing.Size(191, 25);
 			this.runafterValue.TabIndex = 7;
 			// 
 			// genUnsetup
@@ -298,9 +299,9 @@ namespace InstallPack.ConfigModule
 			// 
 			// runBeforeUnValue
 			// 
-			this.runBeforeUnValue.Location = new System.Drawing.Point(161, 380);
+			this.runBeforeUnValue.Location = new System.Drawing.Point(249, 380);
 			this.runBeforeUnValue.Name = "runBeforeUnValue";
-			this.runBeforeUnValue.Size = new System.Drawing.Size(280, 25);
+			this.runBeforeUnValue.Size = new System.Drawing.Size(192, 25);
 			this.runBeforeUnValue.TabIndex = 8;
 			// 
 			// runBeforeUn
@@ -309,9 +310,9 @@ namespace InstallPack.ConfigModule
 			this.runBeforeUn.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.runBeforeUn.Location = new System.Drawing.Point(23, 383);
 			this.runBeforeUn.Name = "runBeforeUn";
-			this.runBeforeUn.Size = new System.Drawing.Size(142, 19);
+			this.runBeforeUn.Size = new System.Drawing.Size(228, 19);
 			this.runBeforeUn.TabIndex = 7;
-			this.runBeforeUn.Text = "卸载之前运行：";
+			this.runBeforeUn.Text = "卸载之前运行命令/程序：";
 			// 
 			// publisherValue
 			// 
@@ -352,13 +353,13 @@ namespace InstallPack.ConfigModule
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(465, 518);
+			this.Controls.Add(this.runBeforeUnValue);
+			this.Controls.Add(this.runafterValue);
 			this.Controls.Add(this.versionValue);
 			this.Controls.Add(this.publisherValue);
-			this.Controls.Add(this.runBeforeUnValue);
 			this.Controls.Add(this.versionLabel);
 			this.Controls.Add(this.publisherLabel);
 			this.Controls.Add(this.runBeforeUn);
-			this.Controls.Add(this.runafterValue);
 			this.Controls.Add(this.done);
 			this.Controls.Add(this.installPathValue);
 			this.Controls.Add(this.listDes);

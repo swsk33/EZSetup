@@ -3,29 +3,29 @@ using System.Windows.Forms;
 
 namespace InstallPack.ConfigModule
 {
-    class Program
-    {
-        /// <summary>
-        /// 状态码，直接关闭而未完成配置则为0，完成配置则返回打包路径和是否生成卸载程序
-        /// </summary>
-        public static string code = "0";
+	class Program
+	{
+		/// <summary>
+		/// 状态码，直接关闭而未完成配置则为0，完成配置则返回打包路径和是否生成卸载程序
+		/// </summary>
+		public static string code = "0";
 
-        public static MainGUI mainGUI;
+		public static MainGUI mainGUI;
 
-        /// <summary>
-        /// 应用程序的主入口点。
-        /// </summary>
-        [STAThread]
-        [Obsolete]
-        static void Main()
-        {
-            //加入私有路径以搜索dll
-            AppDomain.CurrentDomain.AppendPrivatePath("Resources");
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            mainGUI = new MainGUI();
-            Application.Run(mainGUI);
-            Console.WriteLine(code);
-        }
-    }
+		/// <summary>
+		/// 应用程序的主入口点。
+		/// </summary>
+		[STAThread]
+		[Obsolete]
+		static void Main()
+		{
+			//加入私有路径以搜索dll
+			AppDomain.CurrentDomain.AppendPrivatePath("Resources");
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+			mainGUI = new MainGUI();
+			Application.Run(mainGUI);
+			Console.WriteLine(code);
+		}
+	}
 }
