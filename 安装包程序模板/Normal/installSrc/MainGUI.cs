@@ -212,7 +212,7 @@ namespace InstallPack
 				info.InstallPath = pathValue.Text;
 				info.UninstallString = pathValue.Text + "\\uninstall.exe";
 				info.DisplayIcon = pathValue.Text + "\\" + ConfigUtils.GlobalConfigure.MainEXE;
-				info.EstimatedSize = totalSize / 1000;
+				info.EstimatedSize = totalSize / 1024;
 				info.DisplayVersion = ConfigUtils.GlobalConfigure.Version;
 				info.Publisher = ConfigUtils.GlobalConfigure.Publisher;
 				RegUtils.OperateAppUninstallItem(info, true);

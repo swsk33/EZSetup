@@ -118,7 +118,7 @@ namespace InstallPack
 				info.InstallPath = ConfigUtils.GlobalConfigure.InstallPath;
 				info.UninstallString = ConfigUtils.GlobalConfigure.InstallPath + "\\uninstall.exe";
 				info.DisplayIcon = ConfigUtils.GlobalConfigure.InstallPath + "\\" + ConfigUtils.GlobalConfigure.MainEXE;
-				info.EstimatedSize = IOUtils.Get7zOriginSize(ConfigUtils.WORK_PLACE + "\\data.7z") / 1000;
+				info.EstimatedSize = IOUtils.Get7zOriginSize(ConfigUtils.WORK_PLACE + "\\data.7z") / 1024;
 				info.DisplayVersion = ConfigUtils.GlobalConfigure.Version;
 				info.Publisher = ConfigUtils.GlobalConfigure.Publisher;
 				RegUtils.OperateAppUninstallItem(info, true);
