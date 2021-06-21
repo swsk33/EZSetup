@@ -206,7 +206,7 @@ namespace InstallPack.ConfigModule
 			}
 			else
 			{
-				File.Create(assemblyInfoFile);
+				File.Create(assemblyInfoFile).Close();
 			}
 			List<string> csContent = new List<string>();
 			csContent.Add("using System.Reflection;");

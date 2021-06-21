@@ -1,12 +1,12 @@
 ﻿using InstallPack.Model;
 using Newtonsoft.Json;
 using Swsk33.ReadAndWriteSharp;
-using Swsk33.ReadAndWriteSharp.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 
 namespace InstallPack.ConfigModule
@@ -18,7 +18,7 @@ namespace InstallPack.ConfigModule
 			InitializeComponent();
 		}
 
-		private void MainGUI_Load(object sender, System.EventArgs e)
+		private void MainGUI_Load(object sender, EventArgs e)
 		{
 			//设定图标
 			Assembly assembly = Assembly.GetExecutingAssembly();
@@ -26,10 +26,13 @@ namespace InstallPack.ConfigModule
 			Icon = new Icon(iconStream);
 			//赋初值
 			publisherValue.Text = Environment.UserName;
-			versionValue.Text = "1.0.0";
+			versionValue1.Text = "1";
+			versionValue2.Text = "0";
+			versionValue3.Text = "0";
+			versionValue4.Text = "0";
 		}
 
-		private void selectDir_Click(object sender, System.EventArgs e)
+		private void selectDir_Click(object sender, EventArgs e)
 		{
 			FolderBrowserDialog dialog = new FolderBrowserDialog();
 			dialog.Description = "请选择文件夹路径";
@@ -39,7 +42,7 @@ namespace InstallPack.ConfigModule
 			}
 		}
 
-		private void selectExe_Click(object sender, System.EventArgs e)
+		private void selectExe_Click(object sender, EventArgs e)
 		{
 			if (!Directory.Exists(dirValue.Text))
 			{
@@ -59,7 +62,7 @@ namespace InstallPack.ConfigModule
 			}
 		}
 
-		private void generateShortcut_CheckedChanged(object sender, System.EventArgs e)
+		private void generateShortcut_CheckedChanged(object sender, EventArgs e)
 		{
 			if (generateShortcut.Checked)
 			{
@@ -77,7 +80,7 @@ namespace InstallPack.ConfigModule
 			}
 		}
 
-		private void selectInstallPath_Click(object sender, System.EventArgs e)
+		private void selectInstallPath_Click(object sender, EventArgs e)
 		{
 			FolderBrowserDialog dialog = new FolderBrowserDialog();
 			dialog.Description = "请选择默认安装路径";
@@ -87,12 +90,12 @@ namespace InstallPack.ConfigModule
 			}
 		}
 
-		private void clear_Click(object sender, System.EventArgs e)
+		private void clear_Click(object sender, EventArgs e)
 		{
 			shortcutList.Items.Clear();
 		}
 
-		private void add_Click(object sender, System.EventArgs e)
+		private void add_Click(object sender, EventArgs e)
 		{
 			if (!Directory.Exists(dirValue.Text))
 			{
@@ -104,7 +107,7 @@ namespace InstallPack.ConfigModule
 			}
 		}
 
-		private void remove_Click(object sender, System.EventArgs e)
+		private void remove_Click(object sender, EventArgs e)
 		{
 			if (shortcutList.SelectedIndex >= 0)
 			{
@@ -112,7 +115,7 @@ namespace InstallPack.ConfigModule
 			}
 		}
 
-		private void done_Click(object sender, System.EventArgs e)
+		private void done_Click(object sender, EventArgs e)
 		{
 			//查错
 			if (titleValue.Text.Equals(""))
@@ -145,9 +148,14 @@ namespace InstallPack.ConfigModule
 				MessageBox.Show("请填写发布者！", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
-			if (versionValue.Text.Equals(""))
+			if (versionValue1.Text.Equals("") || versionValue2.Text.Equals("") || versionValue3.Text.Equals("") || versionValue4.Text.Equals(""))
 			{
-				MessageBox.Show("请填写版本号！", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("请填写版本号并填写完整！", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+			if (versionValue1.Text.Contains(".") || versionValue2.Text.Contains(".") || versionValue3.Text.Contains(".") || versionValue4.Text.Contains("."))
+			{
+				MessageBox.Show("每个版本号字段中不能包含点(.)！", "错误！", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 			//写入配置文件
@@ -170,14 +178,38 @@ namespace InstallPack.ConfigModule
 			cfg.GenerateUninstall = genUnsetup.Checked;
 			cfg.ShowInstallProcess = showInstallWindow.Checked;
 			cfg.Publisher = publisherValue.Text;
-			cfg.Version = versionValue.Text;
+			cfg.Version = versionValue1.Text + "." + versionValue2.Text + "." + versionValue3.Text + "." + versionValue4.Text;
 			string currentDir = AppDomain.CurrentDomain.BaseDirectory;
-			if (!Directory.Exists(currentDir + "\\Resources"))
+			if (!Directory.Exists(currentDir + "Resources"))
 			{
-				Directory.CreateDirectory(currentDir + "\\Resources");
+				Directory.CreateDirectory(currentDir + "Resources");
 			}
 			string cfgJson = JsonConvert.SerializeObject(cfg);
-			File.WriteAllText(currentDir + @"\Resources\cfg.ezcfg", cfgJson);
+			File.WriteAllText(currentDir + @"Resources\cfg.ezcfg", cfgJson);
+			//写入安装包文件程序集信息
+			string assemblyInfoFile = currentDir + "AssemblyInfo.cs";
+			if (File.Exists(assemblyInfoFile))
+			{
+				TextFileWriter.ClearAll(assemblyInfoFile);
+			}
+			else
+			{
+				File.Create(assemblyInfoFile).Close();
+			}
+			List<string> csContent = new List<string>();
+			csContent.Add("using System.Reflection;");
+			csContent.Add("using System.Runtime.InteropServices;");
+			csContent.Add("[assembly: AssemblyTitle(\"" + cfg.Title + "\")]");
+			csContent.Add("[assembly: AssemblyProduct(\"" + cfg.Title + " 安装向导" + "\")]");
+			csContent.Add("[assembly: AssemblyDescription(\"" + cfg.Title + "的安装程序。" + "\")]");
+			csContent.Add("[assembly: AssemblyCompany(\"" + cfg.Publisher + "\")]");
+			csContent.Add("[assembly: AssemblyCopyright(\"Copyright ©  " + DateTime.Now.ToString("yyyy") + "\")]");
+			csContent.Add("[assembly: AssemblyVersion(\"" + cfg.Version + "\")]");
+			csContent.Add("[assembly: AssemblyFileVersion(\"" + cfg.Version + "\")]");
+			foreach (string info in csContent)
+			{
+				TextFileWriter.AppendText(assemblyInfoFile, info, Encoding.UTF8);
+			}
 			string uninstallCode;
 			if (cfg.GenerateUninstall)
 			{

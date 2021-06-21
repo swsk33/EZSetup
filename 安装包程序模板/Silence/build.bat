@@ -50,7 +50,7 @@ cd /d %~dp0
 set icon="Resources\icon.ico"
 set resCommand=/res:"Resources\icon.ico",InstallPack.Resources.icon.ico /res:"Resources\installing.gif",InstallPack.Resources.installing.gif /res:"Resources\7z.dll",InstallPack.Resources.7z.dll /res:"Resources\7z.exe",InstallPack.Resources.7z.exe /res:"Resources\cfg.ezcfg",InstallPack.Resources.cfg.ezcfg /res:"Resources\shortcut.exe",InstallPack.Resources.shortcut.exe /res:"Resources\ReadAndWriteSharp.dll",InstallPack.Resources.ReadAndWriteSharp.dll /res:"Resources\Newtonsoft.Json.dll",InstallPack.Resources.Newtonsoft.Json.dll /res:"Resources\data.7z",InstallPack.Resources.data.7z
 set referLibCommand=/lib:"Resources" /r:"ReadAndWriteSharp.dll" /r:"Newtonsoft.Json.dll"
-set src="installSrc\*.cs" "installSrc\Util\*.cs" "Model\*.cs"
+set src="AssemblyInfo.cs" "installSrc\*.cs" "installSrc\Util\*.cs" "Model\*.cs"
 csc /nologo %resCommand% %referLibCommand% /win32icon:%icon% /win32manifest:"app.manifest" /out:%out% /t:winexe /platform:anycpu %src%
 goto end
 :buildUnInstall
