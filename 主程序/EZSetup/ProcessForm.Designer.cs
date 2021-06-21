@@ -38,18 +38,20 @@ namespace EZSetup
 			// processingTip
 			// 
 			this.processingTip.AutoSize = true;
-			this.processingTip.Location = new System.Drawing.Point(46, 45);
+			this.processingTip.Location = new System.Drawing.Point(34, 36);
+			this.processingTip.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			this.processingTip.Name = "processingTip";
-			this.processingTip.Size = new System.Drawing.Size(67, 15);
+			this.processingTip.Size = new System.Drawing.Size(53, 12);
 			this.processingTip.TabIndex = 0;
 			this.processingTip.Text = "构建中：";
 			// 
 			// close
 			// 
 			this.close.Enabled = false;
-			this.close.Location = new System.Drawing.Point(116, 129);
+			this.close.Location = new System.Drawing.Point(87, 103);
+			this.close.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.close.Name = "close";
-			this.close.Size = new System.Drawing.Size(85, 31);
+			this.close.Size = new System.Drawing.Size(64, 25);
 			this.close.TabIndex = 1;
 			this.close.Text = "关闭";
 			this.close.UseVisualStyleBackColor = true;
@@ -57,17 +59,19 @@ namespace EZSetup
 			// 
 			// progressBar
 			// 
-			this.progressBar.Location = new System.Drawing.Point(49, 82);
+			this.progressBar.Location = new System.Drawing.Point(37, 66);
+			this.progressBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.progressBar.Name = "progressBar";
-			this.progressBar.Size = new System.Drawing.Size(410, 23);
+			this.progressBar.Size = new System.Drawing.Size(308, 18);
 			this.progressBar.TabIndex = 2;
 			// 
 			// openDir
 			// 
 			this.openDir.Enabled = false;
-			this.openDir.Location = new System.Drawing.Point(268, 129);
+			this.openDir.Location = new System.Drawing.Point(201, 103);
+			this.openDir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.openDir.Name = "openDir";
-			this.openDir.Size = new System.Drawing.Size(129, 31);
+			this.openDir.Size = new System.Drawing.Size(97, 25);
 			this.openDir.TabIndex = 1;
 			this.openDir.Text = "打开输出文件夹";
 			this.openDir.UseVisualStyleBackColor = true;
@@ -75,20 +79,24 @@ namespace EZSetup
 			// 
 			// ProcessForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(503, 189);
+			this.ClientSize = new System.Drawing.Size(377, 151);
 			this.Controls.Add(this.progressBar);
 			this.Controls.Add(this.openDir);
 			this.Controls.Add(this.close);
 			this.Controls.Add(this.processingTip);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.Name = "ProcessForm";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "ProcessForm";
 			this.TopMost = true;
+			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ProcessForm_MouseDown);
+			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ProcessForm_MouseMove);
+			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ProcessForm_MouseUp);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

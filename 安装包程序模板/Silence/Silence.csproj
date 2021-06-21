@@ -48,6 +48,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="UninstallModule\MainGUI.cs">
       <SubType>Form</SubType>
     </Compile>

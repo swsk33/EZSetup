@@ -86,6 +86,7 @@
     <Compile Include="ConfigModule\ShortcutInfo.designer.cs">
       <DependentUpon>ShortcutInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="installSrc\MainGUI.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -4,3 +4,5 @@
 /主程序/EZSetup/TemplatePack/*.7z
 /主程序/EZSetup/*.exe
 /主程序/EZSetup/*.pdb
+/安装包程序模板/*/Resources/cfg.ezcfg
+/安装包程序模板/*/Resources/data.7z
