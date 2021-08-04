@@ -8,16 +8,6 @@ namespace InstallPack.Util
 	class IOUtils
 	{
 		/// <summary>
-		/// 双引号包围字符串
-		/// </summary>
-		/// <param name="origin">原字符串</param>
-		/// <returns>被包围双引号的字符串</returns>
-		public static string SurroundByDoubleQuotes(string origin)
-		{
-			return "\"" + origin + "\"";
-		}
-
-		/// <summary>
 		/// 创建快捷方式
 		/// </summary>
 		/// <param name="exePath">exe文件原位置</param>
@@ -25,7 +15,7 @@ namespace InstallPack.Util
 		public static void CreateShortcut(string exePath, string destPath)
 		{
 			string workingDirectory = exePath.Substring(0, exePath.LastIndexOf("\\"));
-			TerminalUtils.RunCommand(ConfigUtils.WORK_PLACE + "\\shortcut.exe", SurroundByDoubleQuotes(exePath) + " " + SurroundByDoubleQuotes(destPath) + " " + SurroundByDoubleQuotes(workingDirectory));
+			TerminalUtils.RunCommand(ConfigUtils.WORK_PLACE + "\\shortcut.exe", TextUtils.SurroundByDoubleQuotes(exePath) + " " + TextUtils.SurroundByDoubleQuotes(destPath) + " " + TextUtils.SurroundByDoubleQuotes(workingDirectory));
 		}
 
 		/// <summary>
@@ -37,7 +27,7 @@ namespace InstallPack.Util
 		public static void CreateShortcut(string exePath, string destPath, string args)
 		{
 			string workingDirectory = exePath.Substring(0, exePath.LastIndexOf("\\"));
-			TerminalUtils.RunCommand(ConfigUtils.WORK_PLACE + "\\shortcut.exe", SurroundByDoubleQuotes(exePath) + " " + SurroundByDoubleQuotes(destPath) + " " + SurroundByDoubleQuotes(workingDirectory) + " " + args);
+			TerminalUtils.RunCommand(ConfigUtils.WORK_PLACE + "\\shortcut.exe", TextUtils.SurroundByDoubleQuotes(exePath) + " " + TextUtils.SurroundByDoubleQuotes(destPath) + " " + TextUtils.SurroundByDoubleQuotes(workingDirectory) + " " + args);
 		}
 
 		/// <summary>

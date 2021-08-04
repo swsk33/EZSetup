@@ -137,7 +137,7 @@ namespace InstallPack
 			}
 			long totalSize = IOUtils.Get7zOriginSize(ConfigUtils.WORK_PLACE + "\\data.7z");
 			TerminalResult result = new TerminalResult();
-			TerminalUtils.RunCommandAsynchronously("7z", "x " + IOUtils.SurroundByDoubleQuotes(ConfigUtils.WORK_PLACE + "\\data.7z") + " -o" + IOUtils.SurroundByDoubleQuotes(pathValue.Text), result);
+			TerminalUtils.RunCommandAsynchronously("7z", "x " + TextUtils.SurroundByDoubleQuotes(ConfigUtils.WORK_PLACE + "\\data.7z") + " -o" + TextUtils.SurroundByDoubleQuotes(pathValue.Text), result);
 			int ratio = 0;
 			string curFile;
 			while (!result.Finished)
@@ -211,7 +211,12 @@ namespace InstallPack
 				info.DisplayName = ConfigUtils.GlobalConfigure.Title;
 				info.InstallPath = pathValue.Text;
 				info.UninstallString = pathValue.Text + "\\uninstall.exe";
-				info.DisplayIcon = pathValue.Text + "\\" + ConfigUtils.GlobalConfigure.MainEXE;
+				string iconPath = ConfigUtils.GlobalConfigure.MainEXE;
+				if (iconPath.Equals(""))
+				{
+					iconPath = "uninstall.exe";
+				}
+				info.DisplayIcon = pathValue.Text + "\\" + iconPath;
 				info.EstimatedSize = totalSize / 1024;
 				info.DisplayVersion = ConfigUtils.GlobalConfigure.Version;
 				info.Publisher = ConfigUtils.GlobalConfigure.Publisher;

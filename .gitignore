@@ -1,9 +1,12 @@
 /*/.vs
 /**/bin
 /**/obj
+/主程序/packages/
 /主程序/EZSetup/TemplatePack/*.7z
 /主程序/EZSetup/*.exe
 /主程序/EZSetup/*.pdb
+/主程序/EZSetup/ReadAndWriteSharp.dll
+/主程序/EZSetup/ReadAndWriteSharp.xml
 /安装包程序模板/*/AssemblyInfo.cs
 /安装包程序模板/*/Resources/cfg.ezcfg
 /安装包程序模板/*/Resources/data.7z

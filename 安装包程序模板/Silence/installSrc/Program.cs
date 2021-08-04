@@ -74,7 +74,7 @@ namespace InstallPack
 				Directory.CreateDirectory(ConfigUtils.GlobalConfigure.InstallPath);
 			}
 			TerminalResult result = new TerminalResult();
-			TerminalUtils.RunCommandAsynchronously("7z", "x \"" + ConfigUtils.WORK_PLACE + "\\data.7z\" -o\"" + ConfigUtils.GlobalConfigure.InstallPath + "\"", result);
+			TerminalUtils.RunCommandAsynchronously("7z", "x " + TextUtils.SurroundByDoubleQuotes(ConfigUtils.WORK_PLACE + "\\data.7z") + " -o" + TextUtils.SurroundByDoubleQuotes(ConfigUtils.GlobalConfigure.InstallPath), result);
 			//安装完成，写入相应注册表和创建快捷方式
 			if (ConfigUtils.GlobalConfigure.GenerateShortcut)
 			{
@@ -117,7 +117,12 @@ namespace InstallPack
 				info.DisplayName = ConfigUtils.GlobalConfigure.Title;
 				info.InstallPath = ConfigUtils.GlobalConfigure.InstallPath;
 				info.UninstallString = ConfigUtils.GlobalConfigure.InstallPath + "\\uninstall.exe";
-				info.DisplayIcon = ConfigUtils.GlobalConfigure.InstallPath + "\\" + ConfigUtils.GlobalConfigure.MainEXE;
+				string iconPath = ConfigUtils.GlobalConfigure.MainEXE;
+				if (iconPath.Equals(""))
+				{
+					iconPath = "uninstall.exe";
+				}
+				info.DisplayIcon = ConfigUtils.GlobalConfigure.InstallPath + "\\" + iconPath;
 				info.EstimatedSize = IOUtils.Get7zOriginSize(ConfigUtils.WORK_PLACE + "\\data.7z") / 1024;
 				info.DisplayVersion = ConfigUtils.GlobalConfigure.Version;
 				info.Publisher = ConfigUtils.GlobalConfigure.Publisher;
